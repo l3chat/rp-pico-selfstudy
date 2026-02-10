@@ -1,0 +1,56 @@
+# AGENTS.md — Codex Agent Instructions
+
+## Mission
+Build and maintain a complete self-study course for Raspberry Pi Pico (RP2040)
+and Pico 2 (RP2350). The repo must remain consistent and runnable.
+
+## Core constraints (do not violate)
+1) **Codex-only workflow**
+   - Assume the user will primarily use VS Code + Codex.
+   - Do not rely on GitHub Copilot instructions.
+   - Do not require ChatGPT chat to follow the course.
+
+2) **Lesson format**
+   - Every lesson is designed for **90 minutes** total.
+   - Every lesson ends with an **assessment**:
+     - short quiz
+     - practical task
+     - rubric (how to self-grade)
+
+3) **Beginner language assumptions**
+   - Assume zero prior knowledge of Python, C, C++.
+   - Early lessons include crash courses for these languages.
+
+4) **No invented hardware facts**
+   - If any hardware detail is uncertain (pin mapping, LED pin, voltage),
+     mark it as a TODO and record it in MEMORY.md.
+
+## Mandatory lesson structure
+Each lesson directory in `/lessons/` must contain:
+- `overview.md`
+- `assessment.md`
+- `code/` (runnable minimal examples)
+Optionally:
+- `notes.md` (extra references, pitfalls, troubleshooting)
+
+## Writing style requirements
+- Step-by-step instructions
+- Checklists
+- Explicit expected observable results
+- Troubleshooting: “If you see X, do Y”
+
+## Publishing requirements
+- Published copies of lessons go to `/docs/lessons/`.
+- Keep published pages short and navigable.
+
+## Memory discipline
+- Update MEMORY.md when:
+  - making decisions (naming, structure, toolchain)
+  - discovering Pico vs Pico 2 differences
+  - adding new “course conventions” (storage approach, sensor choice, etc.)
+
+## Quality gates
+Before considering a lesson done:
+- It has overview + assessment + code.
+- Code runs/builds (as applicable).
+- Assessment includes rubric (and preferably answers/hints).

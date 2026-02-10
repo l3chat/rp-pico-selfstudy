@@ -1,0 +1,120 @@
+# RP2040 / RP2350 Pico Self-Study Course Plan (90-minute lessons)
+
+Legend: ☐ not started · ☐ in progress · ☑ done
+
+## Standard lesson timing (90 minutes)
+- 10 min: orientation (goals, setup, expected outcome)
+- 55 min: guided build (steps + checkpoints)
+- 10 min: concept reflection (“explain it back”)
+- 15 min: assessment (quiz + practical task + rubric)
+
+---
+
+## Module 0 — Development environment and language crash courses (no prior knowledge)
+
+☐ L00 VS Code development environment (for this course)
+   - Install VS Code
+   - Install required extensions
+   - Serial monitor workflow (USB CDC / UART adapter options)
+   - Pico SDK build workflow (CMake + toolchain)
+   - MicroPython upload workflow
+   - Codex workflow inside the repo:
+     - how to use AGENTS.md
+     - how to use .codex/prompts
+     - how to update MEMORY.md + PLAN.md
+
+☐ L0A Python crash course (for MicroPython + tooling)
+   - variables, types, functions
+   - conditionals, loops
+   - modules, files
+   - minimal debugging habits
+
+☐ L0B C crash course (for embedded SDK code)
+   - compilation model, headers, functions
+   - pointers (intro), arrays, structs
+   - memory model mental picture (stack vs static vs heap)
+
+☐ L0C C++ crash course (minimal for Pico SDK)
+   - what changes vs C
+   - references vs pointers (conceptual)
+   - constructors/destructors idea (conceptual)
+   - “use C first, C++ later” rule of thumb
+
+---
+
+## Module 1 — Pico foundations (MicroPython + Pico SDK)
+
+☐ L01 Setup & flashing (MicroPython + Pico SDK “hello world”)
+☐ L02 GPIO output + input + pull-ups + debouncing
+☐ L03 Timing: delays vs timers + PWM basics
+☐ L04 UART logging + simple command console
+
+☐ L04A Nonvolatile storage (EEPROM equivalent on RP2040/RP2350)
+   - Why there is no classic EEPROM (typical on AVR) and what exists instead
+   - Flash basics: erase blocks, write granularity, wear considerations
+   - Safe patterns:
+     - small config struct with version + checksum
+     - append-only log + compaction
+   - MicroPython option: file-based config (if filesystem available)
+   - Pico SDK option: flash programming API + simple KV store
+   - Assessment: store and retrieve a calibration/config value across reboot
+
+---
+
+## Module 2 — Communication and real devices
+
+☐ L05 I2C basics + error handling
+   - scanning the bus
+   - addressing
+   - retry strategy and timeouts
+
+☐ L05A Temperature/Humidity/Pressure sensor (THP) via I2C
+   - choose a common module (e.g., BME280-class) and read:
+     temperature, humidity, pressure
+   - data conversion and units
+   - basic filtering (moving average)
+   - output to serial console in a stable format
+   - Assessment: implement “sensor health” checks (range validation + retry)
+
+☐ L05B Button matrix scanning (local keyboard)
+   - row/column wiring and why diodes may be needed (ghosting)
+   - scanning loop and debouncing strategy
+   - mapping matrix coordinates to key codes
+   - output pressed keys to serial
+   - Assessment: implement N-key rollover behavior limits and document them
+
+☐ L06 SPI throughput + display/ADC (choose 1 device)
+☐ L07 Interrupts: GPIO + timer + safe shared state
+
+---
+
+## Module 3 — RP “superpowers”
+
+☐ L08 PIO intro: waveform generator
+☐ L09 PIO: custom protocol (choose a target)
+☐ L10 DMA: continuous sampling into ring buffer
+
+---
+
+## Module 4 — Architecture & product skills
+
+☐ L11 Dual-core patterns: queues, producer/consumer
+☐ L12 Low power modes: compare Pico vs Pico 2
+☐ L13 USB device: CDC serial
+☐ L14 USB HID device (keyboard or mouse)
+   - (This can optionally reuse the button matrix from L05B)
+
+---
+
+## Capstone (2 lessons)
+
+☐ L15 Capstone build (choose one final project)
+☐ L16 Capstone polish: docs, tests, release tag
+
+---
+
+## Deliverables per lesson
+- /lessons/Lxx-*/overview.md
+- /lessons/Lxx-*/assessment.md
+- /lessons/Lxx-*/code/ (working examples)
+- /docs/lessons/Lxx-*.md (published version)
