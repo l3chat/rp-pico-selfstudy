@@ -1,0 +1,6 @@
+# Python cache artifacts
+__pycache__/
+*.py[cod]
+
+# Common embedded build output folders
+build/

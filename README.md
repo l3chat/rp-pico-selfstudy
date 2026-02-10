@@ -3,6 +3,10 @@
 This repository is a complete self-study course that you can build and follow
 locally using **VS Code + the Codex extension**.
 
+## Students: start here
+- Local/student entry page: `STUDENT_START_HERE.md`
+- Published student entry page: `docs/student-start-here.md`
+
 ## Key principles
 - Lessons are **90 minutes** each.
 - Every lesson ends with an **assessment** (quiz + practical task + rubric).

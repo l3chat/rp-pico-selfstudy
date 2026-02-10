@@ -25,6 +25,15 @@ and Pico 2 (RP2350). The repo must remain consistent and runnable.
    - If any hardware detail is uncertain (pin mapping, LED pin, voltage),
      mark it as a TODO and record it in MEMORY.md.
 
+## Session-start baseline scan (required)
+- On the first turn of each new Codex session:
+  - Read `AGENTS.md`, `PLAN.md`, `MEMORY.md`, and user-mentioned files.
+  - Run `git status --short`.
+  - Run `rg --files` (or targeted `find`) to map the current structure.
+  - Confirm scope before editing.
+- Keep this scan lightweight (not a deep full-repo audit each follow-up turn).
+- Re-scan deeply only when scope changes, many files are touched, or git state changes.
+
 ## Mandatory lesson structure
 Each lesson directory in `/lessons/` must contain:
 - `overview.md`

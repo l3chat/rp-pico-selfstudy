@@ -8,6 +8,16 @@ Codex should keep it updated when decisions are made.
 - Course assumes no prior knowledge of Python/C/C++.
 - Authoring workflow uses VS Code + Codex only.
 - Lesson structure is standardized (see AGENTS.md).
+- Session-start convention:
+  - first turn in a new session requires a lightweight baseline repo scan
+  - minimum scan includes `git status --short` and `rg --files`
+- Student-facing entry points are standardized:
+  - repo-level `STUDENT_START_HERE.md`
+  - published `docs/student-start-here.md`
+- L00 development-environment baseline:
+  - use `lessons/L00-vscode-env/code/env_check.py` for host preflight checks
+  - use `mpremote` as the default MicroPython run/upload CLI
+  - use `cmake` + `arm-none-eabi-gcc` (+ `ninja` when available) for Pico SDK builds
 - Phase bootstrap approach:
   - Phase 1: local repo init + first commit contains bootstrap scripts
   - Phase 2: add remote + push
@@ -34,3 +44,6 @@ Codex should keep it updated when decisions are made.
 
 ## Status log (append, don’t overwrite)
 - YYYY-MM-DD: Phase 3 scaffold created.
+- 2026-02-10: L00 fully implemented (overview, assessment, code bundle, published page).
+- 2026-02-10: Added explicit student entry pages and linked them from README/docs index.
+- 2026-02-10: Added required session-start baseline scan rule to AGENTS.md.
