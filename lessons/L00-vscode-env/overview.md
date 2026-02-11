@@ -166,7 +166,7 @@ Checklist:
 - [ ] Use `AGENTS.md` as the source of project rules.
 - [ ] Keep `PLAN.md` updated when lesson status changes.
 - [ ] Add decisions/open questions to `MEMORY.md`.
-- [ ] Keep published learner pages in `docs/lessons/` short and easy to scan.
+- [ ] Keep published learner pages in `docs/lessons/` standalone and easy to navigate.
 
 Expected result:
 - You can explain the difference between source lessons (`lessons/`) and published pages (`docs/lessons/`).

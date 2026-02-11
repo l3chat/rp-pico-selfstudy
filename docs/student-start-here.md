@@ -6,14 +6,14 @@ If you are learning from this course, begin here.
 1. Open the [Syllabus](syllabus.md).
 2. Start with the first available lesson.
 3. For each lesson:
-   - read `overview.md`
-   - run files in `code/`
-   - finish `assessment.md`
+   - read the full page in `docs/lessons/`
+   - run files in `lessons/<lesson-id>/code/`
+   - finish the assessment section on that page
 
 ## Where student instructions live
-- Published pages: `docs/`
-- Full lesson instructions: `lessons/<lesson-id>/overview.md`
-- Assessments: `lessons/<lesson-id>/assessment.md`
+- Primary learner pages: `docs/`
+- Source authoring files: `lessons/<lesson-id>/overview.md`
+- Source assessments: `lessons/<lesson-id>/assessment.md`
 
 ## Recommended first lesson
 - [L00 — VS Code Development Environment](lessons/L00-vscode-env.md)

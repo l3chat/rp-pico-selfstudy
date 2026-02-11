@@ -22,7 +22,7 @@ locally using **VS Code + the Codex extension**.
 - `MEMORY.md`      — project memory (decisions, conventions, open questions)
 - `AGENTS.md`      — instructions for Codex (how to work inside this repo)
 - `lessons/`       — lesson sources (overview + assessment + code)
-- `docs/`          — published course pages (GitHub Pages-friendly)
+- `docs/`          — published standalone learner pages (GitHub Pages-friendly)
 - `projects/`      — longer-running code projects (MicroPython + Pico SDK)
 - `.codex/`        — Codex configuration + reusable prompts/templates
 

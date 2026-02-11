@@ -1,5 +1,33 @@
-# L0C — C++ Crash Course (minimal for Pico SDK)
+# L0C — C++ Crash Course (minimal for Pico SDK) (90 minutes)
 
-> Published version. Source is in `/lessons/L0C-cpp-crash/`.
+## Outcome (what you will have at the end)
+- TODO (Codex: fill)
 
-TODO: This lesson will be expanded by Codex.
+## Prerequisites
+- None (assume beginner)
+
+## 90-minute plan
+### 0–10 min: Orientation
+- TODO
+
+### 10–65 min: Guided build
+- TODO (checkpoints)
+
+### 65–75 min: Explain it back
+- TODO (concept questions)
+
+### 75–90 min: Assessment
+- Complete the assessment section below.
+
+## Assessment
+### Quiz (self-check)
+1. TODO
+2. TODO
+3. TODO
+
+### Practical task
+- TODO (a concrete task)
+
+### Rubric (how to grade yourself)
+- Pass if:
+  - TODO

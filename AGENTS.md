@@ -50,7 +50,10 @@ Optionally:
 
 ## Publishing requirements
 - Published copies of lessons go to `/docs/lessons/`.
-- Keep published pages short and navigable.
+- Published lesson pages in `/docs/lessons/` must be standalone:
+  - include the full 90-minute flow (not only a summary link)
+  - include the assessment content (quiz + practical + rubric)
+- Keep published pages navigable.
 
 ## Memory discipline
 - Update MEMORY.md when:
@@ -63,3 +66,4 @@ Before considering a lesson done:
 - It has overview + assessment + code.
 - Code runs/builds (as applicable).
 - Assessment includes rubric (and preferably answers/hints).
+- Published copy in `/docs/lessons/` is updated and standalone.

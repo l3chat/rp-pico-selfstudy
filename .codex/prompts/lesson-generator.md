@@ -13,7 +13,7 @@ Inside it create:
 
 Also create a published page:
 - /docs/lessons/<LESSON_ID>-<short-slug>.md
-  (a compact learner-facing version)
+  (a standalone learner-facing page with full lesson flow + assessment)
 
 Update:
 - PLAN.md: mark the lesson as ☐ in progress (or ☑ done if fully complete)

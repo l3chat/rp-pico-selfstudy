@@ -5,7 +5,7 @@ Follow AGENTS.md strictly.
 Task:
 - Scan the repository for consistency:
   - Every lesson has overview.md and assessment.md
-  - Published docs exist for each lesson
+  - Published docs exist for each lesson and are standalone
   - PLAN.md matches existing lessons
   - MEMORY.md has no contradictions
 

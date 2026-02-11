@@ -14,6 +14,9 @@ Codex should keep it updated when decisions are made.
 - Student-facing entry points are standardized:
   - repo-level `STUDENT_START_HERE.md`
   - published `docs/student-start-here.md`
+- Published lesson policy:
+  - `docs/lessons/` pages are standalone lesson pages, not short placeholders
+  - each published lesson page includes both lesson flow and assessment content
 - L00 development-environment baseline:
   - use `lessons/L00-vscode-env/code/env_check.py` for host preflight checks
   - use `mpremote` as the default MicroPython run/upload CLI
@@ -47,3 +50,4 @@ Codex should keep it updated when decisions are made.
 - 2026-02-10: L00 fully implemented (overview, assessment, code bundle, published page).
 - 2026-02-10: Added explicit student entry pages and linked them from README/docs index.
 - 2026-02-10: Added required session-start baseline scan rule to AGENTS.md.
+- 2026-02-11: Changed publishing policy so `docs/lessons/` must be standalone full lesson pages.

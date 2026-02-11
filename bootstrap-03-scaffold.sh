@@ -132,6 +132,10 @@ write_file "README.md" <<'MD'
 This repository is a complete self-study course that you can build and follow
 locally using **VS Code + the Codex extension**.
 
+## Students: start here
+- Local/student entry page: `STUDENT_START_HERE.md`
+- Published student entry page: `docs/student-start-here.md`
+
 ## Key principles
 - Lessons are **90 minutes** each.
 - Every lesson ends with an **assessment** (quiz + practical task + rubric).
@@ -147,7 +151,7 @@ locally using **VS Code + the Codex extension**.
 - `MEMORY.md`      — project memory (decisions, conventions, open questions)
 - `AGENTS.md`      — instructions for Codex (how to work inside this repo)
 - `lessons/`       — lesson sources (overview + assessment + code)
-- `docs/`          — published course pages (GitHub Pages-friendly)
+- `docs/`          — published standalone learner pages (GitHub Pages-friendly)
 - `projects/`      — longer-running code projects (MicroPython + Pico SDK)
 - `.codex/`        — Codex configuration + reusable prompts/templates
 
@@ -171,6 +175,15 @@ Codex should keep it updated when decisions are made.
 - Course assumes no prior knowledge of Python/C/C++.
 - Authoring workflow uses VS Code + Codex only.
 - Lesson structure is standardized (see AGENTS.md).
+- Session-start convention:
+  - first turn in a new session requires a lightweight baseline repo scan
+  - minimum scan includes `git status --short` and `rg --files`
+- Student-facing entry points are standardized:
+  - repo-level `STUDENT_START_HERE.md`
+  - published `docs/student-start-here.md`
+- Published lesson policy:
+  - `docs/lessons/` pages are standalone lesson pages, not short placeholders
+  - each published lesson page includes both lesson flow and assessment content
 - Phase bootstrap approach:
   - Phase 1: local repo init + first commit contains bootstrap scripts
   - Phase 2: add remote + push
@@ -230,6 +243,15 @@ and Pico 2 (RP2350). The repo must remain consistent and runnable.
    - If any hardware detail is uncertain (pin mapping, LED pin, voltage),
      mark it as a TODO and record it in MEMORY.md.
 
+## Session-start baseline scan (required)
+- On the first turn of each new Codex session:
+  - Read `AGENTS.md`, `PLAN.md`, `MEMORY.md`, and user-mentioned files.
+  - Run `git status --short`.
+  - Run `rg --files` (or targeted `find`) to map the current structure.
+  - Confirm scope before editing.
+- Keep this scan lightweight (not a deep full-repo audit each follow-up turn).
+- Re-scan deeply only when scope changes, many files are touched, or git state changes.
+
 ## Mandatory lesson structure
 Each lesson directory in `/lessons/` must contain:
 - `overview.md`
@@ -246,7 +268,10 @@ Optionally:
 
 ## Publishing requirements
 - Published copies of lessons go to `/docs/lessons/`.
-- Keep published pages short and navigable.
+- Published lesson pages in `/docs/lessons/` must be standalone:
+  - include the full 90-minute flow (not only a summary link)
+  - include the assessment content (quiz + practical + rubric)
+- Keep published pages navigable.
 
 ## Memory discipline
 - Update MEMORY.md when:
@@ -259,6 +284,7 @@ Before considering a lesson done:
 - It has overview + assessment + code.
 - Code runs/builds (as applicable).
 - Assessment includes rubric (and preferably answers/hints).
+- Published copy in `/docs/lessons/` is updated and standalone.
 MD
 
 # -----------------------------------------------------------------------------
@@ -390,7 +416,7 @@ Legend: ☐ not started · ☐ in progress · ☑ done
 - /lessons/Lxx-*/overview.md
 - /lessons/Lxx-*/assessment.md
 - /lessons/Lxx-*/code/ (working examples)
-- /docs/lessons/Lxx-*.md (published version)
+- /docs/lessons/Lxx-*.md (published standalone lesson page)
 MD
 
 # -----------------------------------------------------------------------------
@@ -412,7 +438,7 @@ Inside it create:
 
 Also create a published page:
 - /docs/lessons/<LESSON_ID>-<short-slug>.md
-  (a compact learner-facing version)
+  (a standalone learner-facing page with full lesson flow + assessment)
 
 Update:
 - PLAN.md: mark the lesson as ☐ in progress (or ☑ done if fully complete)
@@ -427,7 +453,7 @@ Follow AGENTS.md strictly.
 Task:
 - Scan the repository for consistency:
   - Every lesson has overview.md and assessment.md
-  - Published docs exist for each lesson
+  - Published docs exist for each lesson and are standalone
   - PLAN.md matches existing lessons
   - MEMORY.md has no contradictions
 
@@ -442,9 +468,10 @@ MD
 write_file "docs/index.md" <<'MD'
 # RP2040 / RP2350 Pico Course
 
-This is the published version of the course.
+This is the published standalone version of the course.
 
 Start here:
+- [Student Start Here](student-start-here.md)
 - [Syllabus](syllabus.md)
 
 Authoring sources live in `/lessons/`.
@@ -455,8 +482,69 @@ write_file "docs/syllabus.md" <<'MD'
 
 This page mirrors PLAN.md and links to published lessons as they appear.
 
+## Orientation
+- Read [Student Start Here](student-start-here.md)
+
+## Available lessons
+Lessons are listed as they are completed and published.
+
 Lessons appear under:
 - `/docs/lessons/`
+MD
+
+# Student entry pages
+write_file "STUDENT_START_HERE.md" <<'MD'
+# Student Start Here
+
+Use this page as your main student entry point.
+
+## Learning path
+1. Open the published entry page: `docs/index.md`.
+2. Read the student guide: `docs/student-start-here.md`.
+3. Start with the first available lesson in `docs/syllabus.md`.
+4. Use each published lesson page in `docs/lessons/` as your primary lesson.
+5. Use `lessons/<lesson-id>/` when you want source files or runnable code:
+   - `overview.md` and `assessment.md` are authoring source
+   - `code/` contains runnable examples
+
+## Recommended workflow per lesson
+1. Read the lesson page in `docs/lessons/` fully before running commands.
+2. Run the lesson code exactly as written from the matching `lessons/<lesson-id>/code/` path.
+3. If something fails, use the lesson troubleshooting lines first.
+4. Complete the assessment section at the end of the lesson page.
+5. Write your own short notes in `lessons/<lesson-id>/notes.md`.
+
+## How to read repo folders
+- `docs/` = published standalone learner pages.
+- `lessons/` = lesson source files + runnable code.
+- `projects/` = longer project work.
+- `PLAN.md` = overall roadmap and lesson status.
+
+## Current scope reminder
+- If a lesson still contains many `TODO` placeholders, treat it as not yet complete.
+- Use `docs/syllabus.md` to see currently available published lessons.
+MD
+
+write_file "docs/student-start-here.md" <<'MD'
+# Student Start Here
+
+If you are learning from this course, begin here.
+
+## Quick start
+1. Open the [Syllabus](syllabus.md).
+2. Start with the first available lesson.
+3. For each lesson:
+   - read the full page in `docs/lessons/`
+   - run files in `lessons/<lesson-id>/code/`
+   - finish the assessment section on that page
+
+## Where student instructions live
+- Primary learner pages: `docs/`
+- Source authoring files: `lessons/<lesson-id>/overview.md`
+- Source assessments: `lessons/<lesson-id>/assessment.md`
+
+## Recommended first lesson
+- [L00 — VS Code Development Environment](lessons/L00-vscode-env.md)
 MD
 
 # -----------------------------------------------------------------------------
@@ -511,13 +599,46 @@ MD
   - TODO
 MD
 
-  # published page placeholder
+  # published standalone page skeleton
   write_file "docs/lessons/${id}-${slug}.md" <<MD
-# ${id} — ${title}
+# ${id} — ${title} (90 minutes)
 
-> Published version. Source is in \`/lessons/${id}-${slug}/\`.
+Source authoring files:
+- \`lessons/${id}-${slug}/overview.md\`
+- \`lessons/${id}-${slug}/assessment.md\`
+- \`lessons/${id}-${slug}/code/\`
 
-TODO: This lesson will be expanded by Codex.
+## Outcome (what you will have at the end)
+- TODO (Codex: fill)
+
+## Prerequisites
+- None (assume beginner)
+
+## 90-minute plan
+### 0–10 min: Orientation
+- TODO
+
+### 10–65 min: Guided build
+- TODO (checkpoints)
+
+### 65–75 min: Explain it back
+- TODO (concept questions)
+
+### 75–90 min: Assessment
+- Complete the assessment section below.
+
+## Assessment
+### Quiz (self-check)
+1. TODO
+2. TODO
+3. TODO
+
+### Practical task
+- TODO (a concrete task)
+
+### Rubric (how to grade yourself)
+- Pass if:
+  - TODO
 MD
 }
 
