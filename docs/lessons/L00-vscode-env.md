@@ -15,6 +15,12 @@ Source lesson: `lessons/L00-vscode-env/`
 - 75–90 min: Assessment
 
 ## Quick checklist
+- [ ] Open this repo as a workspace:
+  - VS Code -> `File > Open Folder...` -> select `rp-pico-selfstudy`.
+  - Trust the workspace when prompted.
+- [ ] Read Markdown with preview:
+  - Same tab: `Ctrl+Shift+V` (`Cmd+Shift+V` on macOS)
+  - Side-by-side: `Ctrl+K` then `V` (`Cmd+K` then `V` on macOS)
 - [ ] Run host check:
 
 ```bash
@@ -49,6 +55,7 @@ cmake --build build
 - If `mpremote` is missing: `python3 -m pip install --user mpremote`.
 - If `PICO_SDK_PATH` is not set: set it to your `pico-sdk` folder and re-run CMake.
 - If board is not detected: replace USB cable (must support data, not just charging).
+- If Markdown links do not render: re-open the project with `File > Open Folder...` instead of opening a single `.md` file.
 
 ## Assessment
 Complete: `lessons/L00-vscode-env/assessment.md`

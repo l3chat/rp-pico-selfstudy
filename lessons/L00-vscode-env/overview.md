@@ -28,23 +28,50 @@ Checklist:
 - [ ] Open `PLAN.md` and locate lesson `L00`.
 - [ ] Open `MEMORY.md` and see where decisions are recorded.
 
+How to open this repository as a workspace (first time):
+1. In VS Code, go to `File > Open Folder...`.
+2. Select the `rp-pico-selfstudy` folder, then choose `Open` (or `Select Folder`).
+3. If VS Code asks whether you trust the authors, choose `Yes, I trust the authors`.
+4. Confirm the left sidebar (Explorer) shows top-level files like `AGENTS.md`, `PLAN.md`, `lessons/`, and `docs/`.
+
+How to read Markdown files in VS Code:
+1. Open any `.md` file (for example `lessons/L00-vscode-env/overview.md`).
+2. Open Markdown Preview in the same tab:
+   - Windows/Linux: `Ctrl+Shift+V`
+   - macOS: `Cmd+Shift+V`
+3. Open Markdown Preview side-by-side with the source:
+   - Windows/Linux: `Ctrl+K` then `V`
+   - macOS: `Cmd+K` then `V`
+4. Keep the editor on the left and preview on the right while you read or edit.
+
 Expected result:
 - You know where lesson content lives (`lessons/`) and where published pages live (`docs/`).
 - You understand that this course uses VS Code + Codex as the main workflow.
+- You can open course Markdown files in preview mode and read them comfortably.
 
 Troubleshooting:
 - If you see "workspace trust" prompts in VS Code, choose to trust this folder so terminals and tasks can run.
+- If links/images in Markdown preview do not resolve, you probably opened a single file instead of the folder. Re-open with `File > Open Folder...`.
+- If Markdown preview does not open, check that the file extension is `.md` and retry the keyboard shortcut.
 
 ### 10–65 min: Guided build
 
 #### 10–25 min: Install and verify host tools
 
-1. Install these tools if missing:
-   - VS Code
-   - Git
-   - Python 3
-   - CMake
-   - `arm-none-eabi-gcc` toolchain
+1. Install host tools if missing.
+   Use the exact command/package names below (these match `env_check.py`):
+
+| Required | Command checked | Package/App name to install | What it is used for |
+|---|---|---|---|
+| Yes | `python3` | `python3` (Python 3) | Runs lesson scripts and tooling (`env_check.py`, `pip`, helpers). |
+| Yes | `git` | `git` | Cloning/updating repositories and course version control. |
+| Yes | `cmake` | `cmake` | Configures Pico SDK C/C++ builds. |
+| Yes | `arm-none-eabi-gcc` | `gcc-arm-none-eabi` (Debian/Ubuntu) or `arm-none-eabi-gcc` (Homebrew) | Cross-compiler for RP2040/RP2350 firmware. |
+| No (recommended) | `code` | Visual Studio Code (`code` CLI command) | Main editor workflow used by this course. |
+| No (recommended) | `ninja` | `ninja` (or `ninja-build` on Debian/Ubuntu) | Faster build backend for CMake (`-G Ninja`). |
+| No (recommended) | `mpremote` | Python package `mpremote` | Upload/run MicroPython scripts over USB serial. |
+| No (optional) | `picotool` | `picotool` | Inspect board/flash metadata and UF2-related device info. |
+
 2. In a VS Code terminal, run:
 
 ```bash
