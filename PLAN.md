@@ -22,7 +22,7 @@ Legend: ☐ not started · ☐ in progress · ☑ done
 
 ## Module 0 — Development environment and language crash courses (no prior knowledge)
 
-☐ L00 VS Code development environment (for this course)
+☑ L00 VS Code development environment (for this course)
    - Install VS Code
    - Install required extensions
    - Serial monitor workflow (USB CDC / UART adapter options)

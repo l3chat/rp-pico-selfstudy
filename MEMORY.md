@@ -21,6 +21,9 @@ Codex should keep it updated when decisions are made.
   - Phase 1: local repo init + first commit contains bootstrap scripts
   - Phase 2: add remote + push
   - Phase 3: scaffold course structure (this file set)
+- L00 environment lesson convention:
+  - use board-neutral serial smoke tests first
+  - avoid LED/pin-based examples until board mappings are verified
 
 ## Hardware assumptions (update when confirmed)
 - Target boards:
@@ -40,6 +43,7 @@ Codex should keep it updated when decisions are made.
 
 ## Open questions / to verify (keep short)
 - LED pin conventions for all supported boards in MicroPython + SDK.
+- UF2 boot-mode entry steps and mass-storage behavior for RP2040-Zero and RP2350-Zero.
 - RP2040-Zero and RP2350-Zero board pin mapping differences vs Pico/Pico 2.
 - RP2040-Zero and RP2350-Zero board voltage/power caveats for beginner lessons.
 - Recommended THP sensor model for lessons (e.g., BME280/BMP280/SHT31 combo).
@@ -47,3 +51,4 @@ Codex should keep it updated when decisions are made.
 
 ## Status log (append, don’t overwrite)
 - YYYY-MM-DD: Phase 3 scaffold created.
+- 2026-02-12: Completed full L00 lesson with runnable environment-check and serial smoke-test code.
