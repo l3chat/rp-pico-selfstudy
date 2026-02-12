@@ -2,6 +2,12 @@
 
 Use this page as your main student entry point.
 
+## Supported dev boards
+- Raspberry Pi Pico (RP2040)
+- Raspberry Pi Pico 2 (RP2350)
+- RP2040-Zero
+- RP2350-Zero
+
 ## Learning path
 1. Open `PLAN.md` to see the roadmap.
 2. Start with the first available lesson in `lessons/`.
@@ -12,10 +18,11 @@ Use this page as your main student entry point.
 
 ## Recommended workflow per lesson
 1. Read `overview.md` fully before running commands.
-2. Run the lesson code exactly as written.
-3. If something fails, use lesson troubleshooting lines first.
-4. Complete `assessment.md` at the end.
-5. Write short notes in `lessons/<lesson-id>/notes.md`.
+2. Check board-specific notes (pin mapping, onboard LED, voltage) for your board.
+3. Run the lesson code exactly as written.
+4. If something fails, use lesson troubleshooting lines first.
+5. Complete `assessment.md` at the end.
+6. Write short notes in `lessons/<lesson-id>/notes.md`.
 
 ## Publishing model
 - Source of truth is only `lessons/`.

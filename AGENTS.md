@@ -2,7 +2,8 @@
 
 ## Mission
 Build and maintain a complete self-study course for Raspberry Pi Pico (RP2040)
-and Pico 2 (RP2350). The repo must remain consistent and runnable.
+and Pico 2 (RP2350), plus RP2040-Zero and RP2350-Zero dev boards.
+The repo must remain consistent and runnable.
 
 ## Core constraints (do not violate)
 1) **Codex-only workflow**
@@ -57,7 +58,8 @@ Optionally:
 ## Memory discipline
 - Update MEMORY.md when:
   - making decisions (naming, structure, toolchain)
-  - discovering Pico vs Pico 2 differences
+  - discovering differences across supported boards
+    (Pico / Pico 2 / RP2040-Zero / RP2350-Zero)
   - adding new “course conventions” (storage approach, sensor choice, etc.)
 
 ## Quality gates

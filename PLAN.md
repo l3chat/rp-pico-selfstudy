@@ -1,6 +1,16 @@
-# RP2040 / RP2350 Pico Self-Study Course Plan (90-minute lessons)
+# RP2040 / RP2350 Pico Self-Study Course Plan (Pico / Pico 2 / RP2040-Zero / RP2350-Zero, 90-minute lessons)
 
 Legend: ☐ not started · ☐ in progress · ☑ done
+
+## Board coverage policy
+- Core board targets for lessons:
+  - Raspberry Pi Pico (RP2040)
+  - Raspberry Pi Pico 2 (RP2350)
+  - RP2040-Zero
+  - RP2350-Zero
+- Hardware lessons should call out board-specific differences when known.
+- If a detail is uncertain (pin mapping, LED pin, voltage), mark TODO and record
+  it in `MEMORY.md`.
 
 ## Standard lesson timing (90 minutes)
 - 10 min: orientation (goals, setup, expected outcome)
@@ -99,7 +109,7 @@ Legend: ☐ not started · ☐ in progress · ☑ done
 ## Module 4 — Architecture & product skills
 
 ☐ L11 Dual-core patterns: queues, producer/consumer
-☐ L12 Low power modes: compare Pico vs Pico 2
+☐ L12 Low power modes: compare RP2040-family vs RP2350-family boards
 ☐ L13 USB device: CDC serial
 ☐ L14 USB HID device (keyboard or mouse)
    - (This can optionally reuse the button matrix from L05B)

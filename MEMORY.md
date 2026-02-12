@@ -26,7 +26,9 @@ Codex should keep it updated when decisions are made.
 - Target boards:
   - Raspberry Pi Pico (RP2040)
   - Raspberry Pi Pico 2 (RP2350)
-- Always state explicitly when a step is Pico-only vs Pico-2-only.
+  - RP2040-Zero
+  - RP2350-Zero
+- Always state explicitly when a step is board-specific.
 - Record any pin mappings used by lessons here.
 
 ## Nonvolatile storage policy
@@ -37,7 +39,9 @@ Codex should keep it updated when decisions are made.
 - If we adopt a specific approach in lessons, record it here.
 
 ## Open questions / to verify (keep short)
-- LED pin conventions for Pico vs Pico 2 in MicroPython + SDK.
+- LED pin conventions for all supported boards in MicroPython + SDK.
+- RP2040-Zero and RP2350-Zero board pin mapping differences vs Pico/Pico 2.
+- RP2040-Zero and RP2350-Zero board voltage/power caveats for beginner lessons.
 - Recommended THP sensor model for lessons (e.g., BME280/BMP280/SHT31 combo).
 - Recommended keypad matrix size for the button-matrix lesson.
 
