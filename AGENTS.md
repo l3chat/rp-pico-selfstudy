@@ -28,12 +28,17 @@ The repo must remain consistent and runnable.
 
 ## Session-start baseline scan (required)
 - On the first turn of each new Codex session:
-  - Read `AGENTS.md`, `PLAN.md`, `MEMORY.md`, and user-mentioned files.
+  - Read `AGENTS.md`, `PLAN.md`, `MEMORY.md`, `TODO.md`, and user-mentioned files.
   - Run `git status --short`.
   - Run `rg --files` (or targeted `find`) to map the current structure.
   - Confirm scope before editing.
 - Keep this scan lightweight (not a deep full-repo audit each follow-up turn).
 - Re-scan deeply only when scope changes, many files are touched, or git state changes.
+
+## Task tracking discipline
+- Use root `TODO.md` as the task tracker.
+- Keep active items under `## todos`.
+- Move finished items to `## done`.
 
 ## Mandatory lesson structure
 Each lesson directory in `/lessons/` must contain:

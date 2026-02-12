@@ -30,7 +30,7 @@
 #
 # 3) Phase 3 (course scaffold):
 #       bash bootstrap-03-scaffold.sh
-#    Result: creates README.md, AGENTS.md, MEMORY.md, PLAN.md, lessons/,
+#    Result: creates README.md, AGENTS.md, MEMORY.md, PLAN.md, TODO.md, lessons/,
 #            scripts/, .github workflows, .codex prompts, and lesson skeletons.
 #            Makes a new commit.
 #

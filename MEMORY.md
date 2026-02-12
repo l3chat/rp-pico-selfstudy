@@ -13,6 +13,8 @@ Codex should keep it updated when decisions are made.
   - minimum scan includes `git status --short` and `rg --files`
 - Student-facing entry points are standardized:
   - repo-level `STUDENT_START_HERE.md`
+- Task tracking convention:
+  - repo-level `TODO.md` with `todos` and `done` sections
 - Publishing model:
   - `lessons/` is the single source of truth
   - GitHub Actions builds and deploys a generated `site/` artifact
@@ -52,3 +54,4 @@ Codex should keep it updated when decisions are made.
 ## Status log (append, don’t overwrite)
 - YYYY-MM-DD: Phase 3 scaffold created.
 - 2026-02-12: Completed full L00 lesson with runnable environment-check and serial smoke-test code.
+- 2026-02-12: Added repo-level `TODO.md` and aligned AGENTS/bootstrap scaffolding with `todos`/`done` tracking.

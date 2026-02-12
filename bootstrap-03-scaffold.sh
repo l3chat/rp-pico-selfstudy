@@ -6,7 +6,7 @@
 # PHASE 3 PURPOSE
 # ---------------
 # Phase 3 creates the *actual course repository scaffolding*:
-#   - README.md / AGENTS.md / MEMORY.md / PLAN.md
+#   - README.md / AGENTS.md / MEMORY.md / PLAN.md / TODO.md
 #   - directory structure: lessons/, projects/, scripts/, .github/, .codex/
 #   - Codex prompt templates (to avoid needing ChatGPT chat)
 #   - lesson skeletons (placeholders Codex will expand)
@@ -139,6 +139,7 @@ clean_scaffold() {
     "AGENTS.md"
     "MEMORY.md"
     "PLAN.md"
+    "TODO.md"
     "STUDENT_START_HERE.md"
     ".gitignore"
     "lessons"
@@ -234,6 +235,7 @@ locally using **VS Code + the Codex extension**.
 ## Where things live
 - `PLAN.md`        — course roadmap / checklist
 - `MEMORY.md`      — project memory (decisions, conventions, open questions)
+- `TODO.md`        — active/completed task tracking (`todos` / `done`)
 - `AGENTS.md`      — instructions for Codex (how to work inside this repo)
 - `lessons/`       — lesson sources (overview + assessment + code)
 - `scripts/`       — tooling (including static-site generation)
@@ -276,6 +278,8 @@ Codex should keep it updated when decisions are made.
   - Phase 1: local repo init + first commit contains bootstrap scripts
   - Phase 2: add remote + push
   - Phase 3: scaffold course structure (this file set)
+- Task tracking convention:
+  - use root `TODO.md` with `todos` and `done` sections
 
 ## Hardware assumptions (update when confirmed)
 - Target boards:
@@ -305,7 +309,18 @@ Codex should keep it updated when decisions are made.
 MD
 
 # -----------------------------------------------------------------------------
-# 4) AGENTS.md (Codex-only workflow constitution)
+# 4) TODO.md (task tracker)
+# -----------------------------------------------------------------------------
+write_file "TODO.md" <<'MD'
+# TODO
+
+## todos
+
+## done
+MD
+
+# -----------------------------------------------------------------------------
+# 5) AGENTS.md (Codex-only workflow constitution)
 # -----------------------------------------------------------------------------
 write_file "AGENTS.md" <<'MD'
 # AGENTS.md — Codex Agent Instructions
@@ -338,12 +353,17 @@ The repo must remain consistent and runnable.
 
 ## Session-start baseline scan (required)
 - On the first turn of each new Codex session:
-  - Read `AGENTS.md`, `PLAN.md`, `MEMORY.md`, and user-mentioned files.
+  - Read `AGENTS.md`, `PLAN.md`, `MEMORY.md`, `TODO.md`, and user-mentioned files.
   - Run `git status --short`.
   - Run `rg --files` (or targeted `find`) to map the current structure.
   - Confirm scope before editing.
 - Keep this scan lightweight (not a deep full-repo audit each follow-up turn).
 - Re-scan deeply only when scope changes, many files are touched, or git state changes.
+
+## Task tracking discipline
+- Use root `TODO.md` as the task tracker.
+- Keep active items under `## todos`.
+- Move finished items to `## done`.
 
 ## Mandatory lesson structure
 Each lesson directory in `/lessons/` must contain:
@@ -381,7 +401,7 @@ Before considering a lesson done:
 MD
 
 # -----------------------------------------------------------------------------
-# 5) PLAN.md (extended per your new requirements)
+# 6) PLAN.md (extended per your new requirements)
 # -----------------------------------------------------------------------------
 # We avoid renumbering existing lesson IDs. Instead, we add suffix lessons:
 # - L04A: Nonvolatile storage (EEPROM equivalent)
@@ -523,7 +543,7 @@ Legend: ☐ not started · ☐ in progress · ☑ done
 MD
 
 # -----------------------------------------------------------------------------
-# 6) Codex prompt templates (so the repo “authors itself”)
+# 7) Codex prompt templates (so the repo “authors itself”)
 # -----------------------------------------------------------------------------
 write_file ".codex/prompts/lesson-generator.md" <<'MD'
 # Codex Prompt Template: Generate a Lesson
@@ -564,7 +584,7 @@ Output:
 MD
 
 # -----------------------------------------------------------------------------
-# 7) Student entry page (local source view)
+# 8) Student entry page (local source view)
 # -----------------------------------------------------------------------------
 write_file "STUDENT_START_HERE.md" <<'MD'
 # Student Start Here
@@ -601,7 +621,7 @@ Use this page as your main student entry point.
 MD
 
 # -----------------------------------------------------------------------------
-# 8) Site generation tooling
+# 9) Site generation tooling
 # -----------------------------------------------------------------------------
 write_file ".gitignore" <<'MD'
 # Generated static site output
@@ -826,7 +846,7 @@ PY
 chmod +x scripts/build_site.py
 
 # -----------------------------------------------------------------------------
-# 9) GitHub Actions: check + Pages deploy
+# 10) GitHub Actions: check + Pages deploy
 # -----------------------------------------------------------------------------
 write_file ".github/workflows/site-check.yml" <<'YAML'
 name: Site Check
@@ -910,7 +930,7 @@ jobs:
 YAML
 
 # -----------------------------------------------------------------------------
-# 10) Lesson skeleton generator (placeholders Codex will expand)
+# 11) Lesson skeleton generator (placeholders Codex will expand)
 # -----------------------------------------------------------------------------
 create_lesson_skeleton () {
   local id="$1"
@@ -976,7 +996,7 @@ create_lesson_skeleton "L05A" "thp-sensor" "Temperature/Humidity/Pressure Sensor
 create_lesson_skeleton "L05B" "button-matrix" "Button Matrix Scanning (Local Keyboard)"
 
 # -----------------------------------------------------------------------------
-# 11) Commit changes (Phase 3 should create a clean commit)
+# 12) Commit changes (Phase 3 should create a clean commit)
 # -----------------------------------------------------------------------------
 git add .
 
@@ -987,7 +1007,7 @@ else
 fi
 
 # -----------------------------------------------------------------------------
-# 12) Final guidance for Codex-only workflow
+# 13) Final guidance for Codex-only workflow
 # -----------------------------------------------------------------------------
 cat <<'TXT'
 
@@ -1000,6 +1020,7 @@ Recommended next steps (Codex-only workflow):
 4) Use .codex/prompts/lesson-generator.md as your standard prompt template.
 5) Build a local preview site with: python3 scripts/build_site.py
 6) Keep MEMORY.md updated when hardware/toolchain decisions are made.
+7) Track active/completed tasks in TODO.md (`todos` / `done`).
 
 Notes:
 - This script does not touch remotes and does not push.
