@@ -15,6 +15,9 @@ Codex should keep it updated when decisions are made.
   - repo-level `STUDENT_START_HERE.md`
 - Task tracking convention:
   - repo-level `TODO.md` with `todos` and `done` sections
+- Chat archive convention:
+  - save project chat history in root `CHAT.adoc`
+  - keep chat history append-only
 - Publishing model:
   - `lessons/` is the single source of truth
   - GitHub Actions builds and deploys a generated `site/` artifact
@@ -98,3 +101,5 @@ Codex should keep it updated when decisions are made.
 - 2026-02-13: Added L00 serial usage basics and troubleshooting based on real session outcomes: `miniterm` key controls, locked-port detection/cleanup (`fuser` + `kill`), no-output recovery by re-uploading `hello_repl.py` as `main.py`, and explicit MicroPython paste-mode instructions.
 - 2026-02-13: Reordered L00 MicroPython steps for a more natural flow (flash firmware, then run smoke test) and added navigation/source-file links in overview, assessment, and code README.
 - 2026-02-13: Updated site build output structure from flat lesson pages (`lessons/<lesson>.html`) to per-lesson directories (`lessons/<lesson>/index.html`) and copied lesson source files into publish output so relative links like `code/...` and `assessment.md` resolve on published pages.
+- 2026-02-13: Added formal chat-archive discipline to `AGENTS.md` and memory conventions: save project chats in append-only `CHAT.adoc`.
+- 2026-02-13: Propagated chat-archive conventions into `bootstrap-03-scaffold.sh` so scaffolded repos now include `CHAT.adoc`, AGENTS/MEMORY chat rules, README mention, and clean-mode handling.

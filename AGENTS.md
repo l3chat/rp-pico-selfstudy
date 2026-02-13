@@ -40,6 +40,11 @@ The repo must remain consistent and runnable.
 - Keep active items under `## todos`.
 - Move finished items to `## done`.
 
+## Chat archive discipline
+- Save project chat history in root `CHAT.adoc`.
+- Keep it append-only; do not delete previous turns.
+- After each substantial session, append new user/assistant turns so project context is preserved.
+
 ## Mandatory lesson structure
 Each lesson directory in `/lessons/` must contain:
 - `overview.md`

@@ -140,6 +140,7 @@ clean_scaffold() {
     "MEMORY.md"
     "PLAN.md"
     "TODO.md"
+    "CHAT.adoc"
     "STUDENT_START_HERE.md"
     ".gitignore"
     "lessons"
@@ -236,6 +237,7 @@ locally using **VS Code + the Codex extension**.
 - `PLAN.md`        — course roadmap / checklist
 - `MEMORY.md`      — project memory (decisions, conventions, open questions)
 - `TODO.md`        — active/completed task tracking (`todos` / `done`)
+- `CHAT.adoc`      — append-only project chat archive
 - `AGENTS.md`      — instructions for Codex (how to work inside this repo)
 - `lessons/`       — lesson sources (overview + assessment + code)
 - `scripts/`       — tooling (including static-site generation)
@@ -280,6 +282,9 @@ Codex should keep it updated when decisions are made.
   - Phase 3: scaffold course structure (this file set)
 - Task tracking convention:
   - use root `TODO.md` with `todos` and `done` sections
+- Chat archive convention:
+  - save project chat history in root `CHAT.adoc`
+  - keep chat history append-only
 
 ## Hardware assumptions (update when confirmed)
 - Target boards:
@@ -320,7 +325,18 @@ write_file "TODO.md" <<'MD'
 MD
 
 # -----------------------------------------------------------------------------
-# 5) AGENTS.md (Codex-only workflow constitution)
+# 5) CHAT.adoc (project chat archive)
+# -----------------------------------------------------------------------------
+write_file "CHAT.adoc" <<'ADOC'
+= Chat Transcript
+:toc:
+:toclevels: 2
+
+NOTE: Append-only project chat archive.
+ADOC
+
+# -----------------------------------------------------------------------------
+# 6) AGENTS.md (Codex-only workflow constitution)
 # -----------------------------------------------------------------------------
 write_file "AGENTS.md" <<'MD'
 # AGENTS.md — Codex Agent Instructions
@@ -364,6 +380,11 @@ The repo must remain consistent and runnable.
 - Use root `TODO.md` as the task tracker.
 - Keep active items under `## todos`.
 - Move finished items to `## done`.
+
+## Chat archive discipline
+- Save project chat history in root `CHAT.adoc`.
+- Keep it append-only; do not delete previous turns.
+- After each substantial session, append new user/assistant turns so project context is preserved.
 
 ## Mandatory lesson structure
 Each lesson directory in `/lessons/` must contain:
@@ -412,7 +433,7 @@ Before considering a lesson done:
 MD
 
 # -----------------------------------------------------------------------------
-# 6) PLAN.md (extended per your new requirements)
+# 7) PLAN.md (extended per your new requirements)
 # -----------------------------------------------------------------------------
 # We avoid renumbering existing lesson IDs. Instead, we add suffix lessons:
 # - L04A: Nonvolatile storage (EEPROM equivalent)
@@ -554,7 +575,7 @@ Legend: ☐ not started · ☐ in progress · ☑ done
 MD
 
 # -----------------------------------------------------------------------------
-# 7) Codex prompt templates (so the repo “authors itself”)
+# 8) Codex prompt templates (so the repo “authors itself”)
 # -----------------------------------------------------------------------------
 write_file ".codex/prompts/lesson-generator.md" <<'MD'
 # Codex Prompt Template: Generate a Lesson
@@ -597,7 +618,7 @@ Output:
 MD
 
 # -----------------------------------------------------------------------------
-# 8) Student entry page (local source view)
+# 9) Student entry page (local source view)
 # -----------------------------------------------------------------------------
 write_file "STUDENT_START_HERE.md" <<'MD'
 # Student Start Here
@@ -634,7 +655,7 @@ Use this page as your main student entry point.
 MD
 
 # -----------------------------------------------------------------------------
-# 9) Site generation tooling
+# 10) Site generation tooling
 # -----------------------------------------------------------------------------
 write_file ".gitignore" <<'MD'
 # Generated static site output
@@ -945,7 +966,7 @@ PY
 chmod +x scripts/build_site.py
 
 # -----------------------------------------------------------------------------
-# 10) GitHub Actions: check + Pages deploy
+# 11) GitHub Actions: check + Pages deploy
 # -----------------------------------------------------------------------------
 write_file ".github/workflows/site-check.yml" <<'YAML'
 name: Site Check
@@ -1029,7 +1050,7 @@ jobs:
 YAML
 
 # -----------------------------------------------------------------------------
-# 11) Lesson skeleton generator (placeholders Codex will expand)
+# 12) Lesson skeleton generator (placeholders Codex will expand)
 # -----------------------------------------------------------------------------
 create_lesson_skeleton () {
   local id="$1"
@@ -1095,7 +1116,7 @@ create_lesson_skeleton "L05A" "thp-sensor" "Temperature/Humidity/Pressure Sensor
 create_lesson_skeleton "L05B" "button-matrix" "Button Matrix Scanning (Local Keyboard)"
 
 # -----------------------------------------------------------------------------
-# 12) Commit changes (Phase 3 should create a clean commit)
+# 13) Commit changes (Phase 3 should create a clean commit)
 # -----------------------------------------------------------------------------
 git add .
 
@@ -1106,7 +1127,7 @@ else
 fi
 
 # -----------------------------------------------------------------------------
-# 13) Final guidance for Codex-only workflow
+# 14) Final guidance for Codex-only workflow
 # -----------------------------------------------------------------------------
 cat <<'TXT'
 
@@ -1121,6 +1142,7 @@ Recommended next steps (Codex-only workflow):
    (or python3 scripts/build_site.py if you are not using .venv)
 6) Keep MEMORY.md updated when hardware/toolchain decisions are made.
 7) Track active/completed tasks in TODO.md (`todos` / `done`).
+8) Keep CHAT.adoc append-only and add key project chat turns.
 
 Notes:
 - This script does not touch remotes and does not push.
