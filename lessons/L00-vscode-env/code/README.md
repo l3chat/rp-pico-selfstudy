@@ -2,11 +2,17 @@
 
 This folder contains minimal runnable examples used in lesson L00.
 
+## Navigation
+
+- [Lesson overview](../overview.md)
+- [Lesson assessment](../assessment.md)
+
 ## Files
 
-- `verify_env.py` — checks host tools, Python packages, `PICO_SDK_PATH`, and VS Code extensions
-- `micropython/hello_repl.py` — serial heartbeat script for MicroPython
-- `pico-sdk-usb-hello/` — minimal Pico SDK USB serial project
+- [`verify_env.py`](verify_env.py) — checks host tools, Python packages, `PICO_SDK_PATH`, and VS Code extensions
+- [`micropython/hello_repl.py`](micropython/hello_repl.py) — serial heartbeat script for MicroPython
+- [`pico-sdk-usb-hello/CMakeLists.txt`](pico-sdk-usb-hello/CMakeLists.txt) — Pico SDK project config
+- [`pico-sdk-usb-hello/main.c`](pico-sdk-usb-hello/main.c) — Pico SDK serial smoke-test source
 
 ## Quick run
 
@@ -47,6 +53,26 @@ If it still fails after relogin:
 sudo fuser -v /dev/ttyACM0
 ```
 
+If serial reports `Could not exclusively lock port` or `Resource temporarily unavailable`:
+
+- another process already holds the port.
+- find the process:
+
+```bash
+sudo fuser -v /dev/ttyACM0
+```
+
+- stop it (replace `<PID>`):
+
+```bash
+sudo kill <PID>
+```
+
+Basic `miniterm` controls:
+
+- quit: `Ctrl+]`
+- menu/help: `Ctrl+T`, then `Ctrl+H`
+
 ## MicroPython smoke test (L00)
 
 File:
@@ -80,13 +106,25 @@ Behavior:
 
 Run options:
 
-- paste into REPL and run directly
-- or upload as `main.py` on a MicroPython board and reset
+- REPL paste mode:
+  - press `Ctrl+E`, paste script, then `Ctrl+D` to run
+- recommended file upload:
+
+```bash
+python3 -m pip install --user mpremote
+mpremote connect <PORT> fs cp lessons/L00-vscode-env/code/micropython/hello_repl.py :main.py
+mpremote connect <PORT> reset
+```
 
 Expected observable result:
 
 - startup line appears once
 - then `tick` lines continue every second on serial output
+
+If serial opens but there is no output:
+
+- board may be running a different `main.py`
+- upload `hello_repl.py` as `main.py` again, then reset
 
 ## Pico SDK install (Linux quick path)
 

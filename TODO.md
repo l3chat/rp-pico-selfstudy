@@ -18,3 +18,5 @@
 - 2026-02-13: Completed MicroPython smoke-test documentation in L00 (run options, expected startup/tick output, stop behavior, and troubleshooting) across overview/code README/script docstring.
 - 2026-02-13: Added direct official MicroPython UF2 download links and BOOTSEL flash steps to L00 overview and code README.
 - 2026-02-13: Clarified L00 Zero-board firmware wording: dedicated official board-name pages may be absent; use chip-family `RPI_PICO`/`RPI_PICO2` pages first, then vendor guidance.
+- 2026-02-13: Expanded L00 serial guidance with practical recovery patterns from live testing: `miniterm` controls, locked-port handling (`fuser`/`kill`), no-output recovery by re-uploading `hello_repl.py` as `main.py`, and REPL paste-mode steps.
+- 2026-02-13: Added L00 navigation/source-file links and reordered MicroPython steps to a more natural sequence (flash firmware before running the smoke test).

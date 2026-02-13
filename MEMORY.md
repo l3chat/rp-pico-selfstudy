@@ -42,6 +42,11 @@ Codex should keep it updated when decisions are made.
     plus explicit BOOTSEL flash steps
   - for RP2040-Zero/RP2350-Zero, docs should state that dedicated official board-name
     download pages may be absent, and students should start with chip-family UF2 pages
+  - serial workflow docs must include lock handling (`fuser`/`kill`), `miniterm` basic controls,
+    and no-output recovery (re-upload `main.py`)
+  - REPL paste instructions must use MicroPython paste mode (`Ctrl+E`, then `Ctrl+D`)
+  - L00 lesson docs include a navigation section and clickable source-file links,
+    and sequence MicroPython firmware flashing before running the smoke test
 
 ## Hardware assumptions (update when confirmed)
 - Target boards:
@@ -87,3 +92,5 @@ Codex should keep it updated when decisions are made.
 - 2026-02-13: Expanded L00 MicroPython smoke-test documentation in overview/code README/script docstring with explicit run options, expected startup + tick output, stop behavior, and troubleshooting.
 - 2026-02-13: Added direct official MicroPython UF2 download links (`download`, `RPI_PICO`, `RPI_PICO2`) and BOOTSEL flash steps to L00 overview/code README.
 - 2026-02-13: Clarified L00 Zero-board firmware guidance: Zero board names may not have dedicated official MicroPython pages, so start from chip-family `RPI_PICO`/`RPI_PICO2` and confirm vendor-specific notes.
+- 2026-02-13: Added L00 serial usage basics and troubleshooting based on real session outcomes: `miniterm` key controls, locked-port detection/cleanup (`fuser` + `kill`), no-output recovery by re-uploading `hello_repl.py` as `main.py`, and explicit MicroPython paste-mode instructions.
+- 2026-02-13: Reordered L00 MicroPython steps for a more natural flow (flash firmware, then run smoke test) and added navigation/source-file links in overview, assessment, and code README.

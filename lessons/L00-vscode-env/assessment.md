@@ -1,5 +1,16 @@
 # L00 — Assessment
 
+## Navigation
+
+- [Lesson overview](overview.md)
+- [Code assets README](code/README.md)
+
+Source files for this assessment:
+
+- [`code/verify_env.py`](code/verify_env.py)
+- [`code/micropython/hello_repl.py`](code/micropython/hello_repl.py)
+- [`code/pico-sdk-usb-hello/main.c`](code/pico-sdk-usb-hello/main.c)
+
 ## How to use this assessment
 
 - Time budget: 15 minutes
@@ -14,6 +25,8 @@
 4. What environment variable must be set before building the Pico SDK sample?
 5. If your board port does not appear, what are the first two checks you should do?
 6. On Linux, if `miniterm` returns `Permission denied` on `/dev/ttyACM0`, what is the persistent fix?
+7. If serial says `Could not exclusively lock port`, what does it mean and what command helps identify the holder?
+8. If serial opens but shows no `tick` output, what is the fastest recovery action in this lesson?
 
 ## Practical task
 
@@ -27,8 +40,8 @@ Complete this workflow without skipping steps:
 
 2. Open and explain these files out loud (or in notes):
 
-  - `lessons/L00-vscode-env/code/micropython/hello_repl.py`
-  - `lessons/L00-vscode-env/code/pico-sdk-usb-hello/main.c`
+  - [`code/micropython/hello_repl.py`](code/micropython/hello_repl.py)
+  - [`code/pico-sdk-usb-hello/main.c`](code/pico-sdk-usb-hello/main.c)
 
 3. Write 4 lines in a temporary note that include:
 
@@ -54,12 +67,13 @@ Score each item as 0 or 1.
 - [ ] I prepared a usable serial monitor command for my machine.
 - [ ] I understand at least one troubleshooting action for missing ports.
 - [ ] I know the Linux fix for serial `Permission denied` without using `sudo`.
+- [ ] I know how to recover from a locked port or a no-output serial session.
 
 Scoring:
 
-- 7/7: Ready to continue to L01.
-- 5-6/7: Continue to L01, but keep this lesson open as reference.
-- 0-4/7: Repeat L00 guided steps before L01.
+- 8/8: Ready to continue to L01.
+- 6-7/8: Continue to L01, but keep this lesson open as reference.
+- 0-5/8: Repeat L00 guided steps before L01.
 
 ## Answer key / hints
 
@@ -73,3 +87,5 @@ Scoring:
 4. `PICO_SDK_PATH`
 5. Check cable type (must support data), then reconnect board and rescan ports.
 6. Add your user to `dialout` with `sudo usermod -aG dialout "$USER"`, then log out and log back in.
+7. Another process already holds the port; run `sudo fuser -v /dev/ttyACM0` to identify it.
+8. Re-upload `hello_repl.py` as `main.py`, reset the board, and retry serial monitor.

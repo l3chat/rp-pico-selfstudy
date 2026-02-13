@@ -2,6 +2,7 @@
 
 Paste or upload this script to a board running MicroPython.
 It prints one startup line, then a heartbeat counter once per second.
+If you paste in REPL, use Ctrl+E (paste mode), then Ctrl+D to run.
 In REPL mode, stop it with Ctrl+C.
 """
 

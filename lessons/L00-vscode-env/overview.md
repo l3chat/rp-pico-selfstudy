@@ -20,6 +20,29 @@ By the end of this lesson, you will have:
   - RP2040-Zero
   - RP2350-Zero
 
+## Navigation
+
+Lesson sections:
+
+- [Step 1: Install VS Code](#step-1-install-vs-code)
+- [Step 2: Install required extensions](#step-2-install-required-extensions)
+- [Step 3: Open the integrated terminal](#step-3-open-the-integrated-terminal)
+- [Step 4: Run the environment checker](#step-4-run-the-environment-checker)
+- [Step 5: Install pyserial](#step-5-install-a-serial-terminal-tool-python-package)
+- [Step 6: Prepare serial monitor command](#step-6-prepare-serial-monitor-command)
+- [Step 7: Install and flash MicroPython firmware](#step-7-install-and-flash-micropython-firmware)
+- [Step 8: Run the MicroPython smoke test](#step-8-run-the-micropython-smoke-test)
+- [Step 9: Install Pico SDK](#step-9-install-pico-sdk-linux-quick-path)
+- [Step 10: Build Pico SDK smoke test](#step-10-review-and-build-the-pico-sdk-smoke-test-project)
+- [Assessment](assessment.md)
+
+Source files used in this lesson:
+
+- [`code/verify_env.py`](code/verify_env.py)
+- [`code/micropython/hello_repl.py`](code/micropython/hello_repl.py)
+- [`code/pico-sdk-usb-hello/CMakeLists.txt`](code/pico-sdk-usb-hello/CMakeLists.txt)
+- [`code/pico-sdk-usb-hello/main.c`](code/pico-sdk-usb-hello/main.c)
+
 ## Tool map (what each tool does, install names, and where to get it)
 
 Use this section as the exact install reference for L00.
@@ -248,6 +271,12 @@ Command template:
 python3 -m serial.tools.miniterm <PORT> 115200
 ```
 
+Basic `miniterm` controls:
+
+- quit: `Ctrl+]`
+- menu/help: `Ctrl+T`, then `Ctrl+H`
+- use one serial monitor at a time for a port (close old sessions before opening a new one)
+
 Find your serial port:
 
 - Linux: `ls /dev/ttyACM* /dev/ttyUSB* 2>/dev/null`
@@ -294,13 +323,24 @@ If access still fails after relogin:
 sudo fuser -v /dev/ttyACM0
 ```
 
+If serial says `Could not exclusively lock port` or `Resource temporarily unavailable`:
+
+- another process already opened the same port.
+- find the holder:
+
+```bash
+sudo fuser -v /dev/ttyACM0
+```
+
+- stop the stale process (replace `<PID>`):
+
+```bash
+sudo kill <PID>
+```
+
 ## 55–75 min: MicroPython and Pico SDK smoke-test setup
 
-### Step 7: Review the MicroPython smoke-test file
-
-Open:
-
-- `lessons/L00-vscode-env/code/micropython/hello_repl.py`
+### Step 7: Install and flash MicroPython firmware
 
 Get the MicroPython UF2 firmware:
 
@@ -323,6 +363,12 @@ If you use RP2040-Zero or RP2350-Zero:
 - use the matching chip-family page above first (`RPI_PICO` for RP2040, `RPI_PICO2` for RP2350).
 - then verify board-specific UF2 guidance from the board vendor docs.
 
+### Step 8: Run the MicroPython smoke test
+
+Open:
+
+- [`code/micropython/hello_repl.py`](code/micropython/hello_repl.py)
+
 What this script does:
 
 - prints one startup line:
@@ -333,10 +379,18 @@ What this script does:
 
 How to run it:
 
-- Option A (REPL):
-  - paste the script into a MicroPython REPL and press Enter.
-- Option B (file):
-  - upload it as `main.py` to a MicroPython board and reset the board.
+- Option A (REPL paste mode):
+  - open REPL, then press `Ctrl+E` to enter paste mode.
+  - paste the script.
+  - press `Ctrl+D` to run.
+- Option B (file, recommended):
+  - upload it as `main.py` and reset:
+
+```bash
+python3 -m pip install --user mpremote
+mpremote connect <PORT> fs cp lessons/L00-vscode-env/code/micropython/hello_repl.py :main.py
+mpremote connect <PORT> reset
+```
 
 Expected result:
 
@@ -348,8 +402,9 @@ If you do not see output:
 - confirm you opened the correct serial port.
 - press board reset once and watch the serial monitor again.
 - confirm the board is running MicroPython firmware (not Pico SDK firmware).
+- if serial opens but still shows no `tick` lines, upload `hello_repl.py` as `main.py` again and reset.
 
-### Step 8: Install Pico SDK (Linux quick path)
+### Step 9: Install Pico SDK (Linux quick path)
 
 If you are on Linux, run:
 
@@ -393,12 +448,12 @@ If you are on macOS or Windows:
   - `https://github.com/raspberrypi/pico-setup`
 - return to this lesson after `PICO_SDK_PATH` is configured.
 
-### Step 9: Review and build the Pico SDK smoke-test project
+### Step 10: Review and build the Pico SDK smoke-test project
 
 Open:
 
-- `lessons/L00-vscode-env/code/pico-sdk-usb-hello/CMakeLists.txt`
-- `lessons/L00-vscode-env/code/pico-sdk-usb-hello/main.c`
+- [`code/pico-sdk-usb-hello/CMakeLists.txt`](code/pico-sdk-usb-hello/CMakeLists.txt)
+- [`code/pico-sdk-usb-hello/main.c`](code/pico-sdk-usb-hello/main.c)
 
 Build commands:
 
@@ -454,8 +509,9 @@ Answer in your own words:
 - [ ] I can map each tool command to the correct package/app name
 - [ ] `verify_env.py` executed
 - [ ] Serial monitor command prepared
-- [ ] MicroPython smoke-test file reviewed
+- [ ] MicroPython firmware flashed
+- [ ] MicroPython smoke-test run
 - [ ] Pico SDK smoke-test project reviewed
 - [ ] Ready for assessment
 
-Proceed to `assessment.md`.
+Proceed to [`assessment.md`](assessment.md).
