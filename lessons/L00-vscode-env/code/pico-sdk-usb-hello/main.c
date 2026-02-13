@@ -10,7 +10,7 @@ int main(void) {
 
     int count = 0;
     while (true) {
-        printf("L00 Pico SDK smoke test tick %d\\n", count++);
+        printf("L00 Pico SDK smoke test tick %d\n", count++);
         sleep_ms(1000);
     }
 }

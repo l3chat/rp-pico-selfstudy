@@ -263,6 +263,37 @@ If no port appears:
 - check USB cable is data-capable (not charge-only).
 - reconnect the board.
 
+If Linux says `Permission denied` for `/dev/ttyACM*`:
+
+- check device permissions:
+
+```bash
+ls -l /dev/ttyACM0
+```
+
+- add your user to the `dialout` group:
+
+```bash
+sudo usermod -aG dialout "$USER"
+```
+
+- log out and log back in, then reopen terminal/VS Code.
+- verify `dialout` is active in your session:
+
+```bash
+id
+```
+
+- retry serial monitor without `sudo`.
+
+If access still fails after relogin:
+
+- check if another process holds the port:
+
+```bash
+sudo fuser -v /dev/ttyACM0
+```
+
 ## 55–75 min: MicroPython and Pico SDK smoke-test setup
 
 ### Step 7: Review the MicroPython smoke-test file
@@ -345,6 +376,21 @@ Expected result:
 If CMake says `PICO_SDK_PATH is not set`:
 
 - set the environment variable first, then rerun.
+- or rerun configure with:
+
+```bash
+cmake .. -GNinja -DPICO_BOARD=<YOUR_BOARD_ID> -DPICO_SDK_PATH="$HOME/opt/pico-sdk"
+```
+
+If CMake fails while downloading `picotool`:
+
+- install `picotool` on your host.
+- or for an offline compile check only, configure with `-DPICO_NO_PICOTOOL=1` (UF2 output will be disabled).
+
+If VS Code shows an include error in `main.c` (`pico/stdlib.h` not found):
+
+- run CMake configure once so `build/compile_commands.json` is generated.
+- run `C/C++: Rescan Workspace`.
 
 If board ID is unknown:
 

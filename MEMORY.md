@@ -29,6 +29,13 @@ Codex should keep it updated when decisions are made.
 - L00 environment lesson convention:
   - use board-neutral serial smoke tests first
   - avoid LED/pin-based examples until board mappings are verified
+  - Pico SDK sample CMake accepts `PICO_SDK_PATH` from cache var or environment,
+    with `$HOME/opt/pico-sdk` as a beginner-friendly fallback
+  - ignore lesson-local CMake build output directories in git tracking
+  - repo-level VS Code settings point CMake Tools and C/C++ IntelliSense to
+    `lessons/L00-vscode-env/code/pico-sdk-usb-hello` and its `build/compile_commands.json`
+  - Linux serial access troubleshooting uses persistent `dialout` group membership
+    and relogin (avoid requiring `sudo` for routine `miniterm` use)
 
 ## Hardware assumptions (update when confirmed)
 - Target boards:
@@ -67,3 +74,7 @@ Codex should keep it updated when decisions are made.
 - 2026-02-13: Updated site generator and bootstrap template to strip duplicate lesson H1 from article HTML, normalize nested list indentation for two-space-authored Markdown, and convert list-indented fenced code blocks into nested code blocks for reliable rendering.
 - 2026-02-13: Expanded L00 `verify_env.py` coverage to check full tool map items (host tools, Python packages, `PICO_SDK_PATH`, VS Code CLI, and required extension IDs), and documented `.venv`-aware package-check behavior.
 - 2026-02-13: Added explicit Pico SDK install instructions in L00 overview/code README (Linux quick path with official macOS/Windows references) and switched sample build command to include `-GNinja`.
+- 2026-02-13: Updated L00 Pico SDK sample `CMakeLists.txt` to resolve SDK path from `-DPICO_SDK_PATH`, environment `PICO_SDK_PATH`, or `$HOME/opt/pico-sdk`, and added troubleshooting notes for SDK path and picotool fetch failures.
+- 2026-02-13: Updated `.gitignore` to ignore generated `pico-sdk-usb-hello` build directories (`build/` and `build-repro*/`) so local CMake output does not pollute git status.
+- 2026-02-13: Added `.vscode/settings.json` for L00 CMake project IntelliSense (`configurationProvider`, `compileCommands`, source/build directories), enabled `CMAKE_EXPORT_COMPILE_COMMANDS` in lesson CMake, and added include-error troubleshooting notes in L00 docs.
+- 2026-02-13: Added Linux serial `Permission denied` troubleshooting (dialout group + relogin + `fuser` check) to L00 overview/code README/assessment, and fixed Pico SDK smoke-test output to print real newlines.

@@ -1,0 +1,11 @@
+{
+  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/lessons/L00-vscode-env/code/pico-sdk-usb-hello/build/compile_commands.json",
+  "cmake.sourceDirectory": "${workspaceFolder}/lessons/L00-vscode-env/code/pico-sdk-usb-hello",
+  "cmake.buildDirectory": "${workspaceFolder}/lessons/L00-vscode-env/code/pico-sdk-usb-hello/build",
+  "cmake.generator": "Ninja",
+  "cmake.configureOnOpen": false,
+  "cmake.configureSettings": {
+    "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+  }
+}

@@ -7,3 +7,7 @@ __pycache__/
 
 # Local virtual environments
 .venv/
+
+# Lesson-local CMake build outputs
+lessons/L00-vscode-env/code/pico-sdk-usb-hello/build/
+lessons/L00-vscode-env/code/pico-sdk-usb-hello/build-repro*/

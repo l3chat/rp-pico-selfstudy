@@ -13,6 +13,7 @@
 3. Why does the MicroPython smoke test avoid onboard LED examples in L00?
 4. What environment variable must be set before building the Pico SDK sample?
 5. If your board port does not appear, what are the first two checks you should do?
+6. On Linux, if `miniterm` returns `Permission denied` on `/dev/ttyACM0`, what is the persistent fix?
 
 ## Practical task
 
@@ -52,12 +53,13 @@ Score each item as 0 or 1.
 - [ ] I identified a likely serial port for my board.
 - [ ] I prepared a usable serial monitor command for my machine.
 - [ ] I understand at least one troubleshooting action for missing ports.
+- [ ] I know the Linux fix for serial `Permission denied` without using `sudo`.
 
 Scoring:
 
-- 6/6: Ready to continue to L01.
-- 4-5/6: Continue to L01, but keep this lesson open as reference.
-- 0-3/6: Repeat L00 guided steps before L01.
+- 7/7: Ready to continue to L01.
+- 5-6/7: Continue to L01, but keep this lesson open as reference.
+- 0-4/7: Repeat L00 guided steps before L01.
 
 ## Answer key / hints
 
@@ -70,3 +72,4 @@ Scoring:
 3. LED pin mapping may differ across supported boards; L00 avoids unverified hardware assumptions.
 4. `PICO_SDK_PATH`
 5. Check cable type (must support data), then reconnect board and rescan ports.
+6. Add your user to `dialout` with `sudo usermod -aG dialout "$USER"`, then log out and log back in.

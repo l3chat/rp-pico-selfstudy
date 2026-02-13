@@ -11,3 +11,7 @@
 - 2026-02-13: Updated `scripts/build_site.py` and bootstrap template to remove duplicate lesson H1 in rendered pages, preserve nested list structure from two-space-authored Markdown, and render list-nested code blocks correctly.
 - 2026-02-13: Expanded `lessons/L00-vscode-env/code/verify_env.py` to include full L00 tool-map checks (host tools, Python packages, `PICO_SDK_PATH`, VS Code CLI, and required extension IDs).
 - 2026-02-13: Added explicit Pico SDK installation instructions to L00 (Linux quick path + official macOS/Windows references) and aligned L00 code README build flow.
+- 2026-02-13: Hardened `lessons/L00-vscode-env/code/pico-sdk-usb-hello/CMakeLists.txt` to accept `PICO_SDK_PATH` from CMake cache/env with `$HOME/opt/pico-sdk` fallback, plus added CMake troubleshooting notes in L00 docs.
+- 2026-02-13: Updated `.gitignore` to ignore generated L00 Pico SDK lesson build directories (`build/` and `build-repro*/`) so local CMake outputs stay untracked.
+- 2026-02-13: Added repo `.vscode/settings.json`, enabled `CMAKE_EXPORT_COMPILE_COMMANDS` in the L00 Pico SDK sample, and documented IDE include-error troubleshooting so VS Code IntelliSense resolves `pico/stdlib.h`.
+- 2026-02-13: Added Linux serial `Permission denied` troubleshooting to L00 overview/code README/assessment (dialout group + relogin flow), and fixed literal `\\n` output in `pico-sdk-usb-hello/main.c`.
