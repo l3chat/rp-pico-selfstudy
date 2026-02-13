@@ -17,3 +17,4 @@
 - 2026-02-13: Added Linux serial `Permission denied` troubleshooting to L00 overview/code README/assessment (dialout group + relogin flow), and fixed literal `\\n` output in `pico-sdk-usb-hello/main.c`.
 - 2026-02-13: Completed MicroPython smoke-test documentation in L00 (run options, expected startup/tick output, stop behavior, and troubleshooting) across overview/code README/script docstring.
 - 2026-02-13: Added direct official MicroPython UF2 download links and BOOTSEL flash steps to L00 overview and code README.
+- 2026-02-13: Clarified L00 Zero-board firmware wording: dedicated official board-name pages may be absent; use chip-family `RPI_PICO`/`RPI_PICO2` pages first, then vendor guidance.

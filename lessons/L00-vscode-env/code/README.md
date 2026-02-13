@@ -66,7 +66,11 @@ Flash the UF2 before running the smoke test:
 3. Wait for the board to reboot.
 4. Open serial monitor again.
 
-If you use RP2040-Zero or RP2350-Zero, verify board-specific UF2 guidance from the board vendor docs.
+If you use RP2040-Zero or RP2350-Zero:
+
+- there is not always a dedicated official MicroPython download page for Zero board names.
+- use the chip-family pages above first (`RPI_PICO` for RP2040, `RPI_PICO2` for RP2350).
+- then verify board-specific UF2 guidance from the board vendor docs.
 
 Behavior:
 

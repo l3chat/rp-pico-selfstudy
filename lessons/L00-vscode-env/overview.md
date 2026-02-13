@@ -319,7 +319,9 @@ Flash flow:
 
 If you use RP2040-Zero or RP2350-Zero:
 
-- start with the matching chip-family page above, then verify board-specific UF2 guidance from the board vendor docs.
+- there is not always a dedicated official MicroPython download page for Zero board names.
+- use the matching chip-family page above first (`RPI_PICO` for RP2040, `RPI_PICO2` for RP2350).
+- then verify board-specific UF2 guidance from the board vendor docs.
 
 What this script does:
 

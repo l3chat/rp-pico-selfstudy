@@ -40,6 +40,8 @@ Codex should keep it updated when decisions are made.
     startup/tick output pattern, and basic troubleshooting checks
   - MicroPython setup docs include direct official UF2 download links for Pico and Pico 2
     plus explicit BOOTSEL flash steps
+  - for RP2040-Zero/RP2350-Zero, docs should state that dedicated official board-name
+    download pages may be absent, and students should start with chip-family UF2 pages
 
 ## Hardware assumptions (update when confirmed)
 - Target boards:
@@ -84,3 +86,4 @@ Codex should keep it updated when decisions are made.
 - 2026-02-13: Added Linux serial `Permission denied` troubleshooting (dialout group + relogin + `fuser` check) to L00 overview/code README/assessment, and fixed Pico SDK smoke-test output to print real newlines.
 - 2026-02-13: Expanded L00 MicroPython smoke-test documentation in overview/code README/script docstring with explicit run options, expected startup + tick output, stop behavior, and troubleshooting.
 - 2026-02-13: Added direct official MicroPython UF2 download links (`download`, `RPI_PICO`, `RPI_PICO2`) and BOOTSEL flash steps to L00 overview/code README.
+- 2026-02-13: Clarified L00 Zero-board firmware guidance: Zero board names may not have dedicated official MicroPython pages, so start from chip-family `RPI_PICO`/`RPI_PICO2` and confirm vendor-specific notes.
