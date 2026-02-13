@@ -103,3 +103,4 @@ Codex should keep it updated when decisions are made.
 - 2026-02-13: Updated site build output structure from flat lesson pages (`lessons/<lesson>.html`) to per-lesson directories (`lessons/<lesson>/index.html`) and copied lesson source files into publish output so relative links like `code/...` and `assessment.md` resolve on published pages.
 - 2026-02-13: Added formal chat-archive discipline to `AGENTS.md` and memory conventions: save project chats in append-only `CHAT.adoc`.
 - 2026-02-13: Propagated chat-archive conventions into `bootstrap-03-scaffold.sh` so scaffolded repos now include `CHAT.adoc`, AGENTS/MEMORY chat rules, README mention, and clean-mode handling.
+- 2026-02-13: Updated site publishing to generate per-lesson `overview.html` and `assessment.html` (plus optional `notes.html`) and rewrite lesson-doc links from `.md` to `.html`; mirrored the same build script logic into bootstrap scaffolding.

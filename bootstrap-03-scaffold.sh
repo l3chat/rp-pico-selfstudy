@@ -679,6 +679,7 @@ Usage:
 
 from __future__ import annotations
 
+import fnmatch
 import re
 import shutil
 from pathlib import Path
@@ -696,6 +697,9 @@ LESSONS_DIR = ROOT / "lessons"
 SITE_DIR = ROOT / "site"
 SITE_LESSONS_DIR = SITE_DIR / "lessons"
 LESSON_DIR_RE = re.compile(r"^L[0-9A-Z]+-.+")
+SKIP_SOURCE_DIR_GLOBS = ("build", "build-*", "__pycache__", ".pytest_cache")
+SKIP_SOURCE_FILE_GLOBS = ("*.pyc",)
+PUBLISHED_MD_HTML_BASENAMES = {"overview.md", "assessment.md", "notes.md"}
 
 CSS = """
 :root {
@@ -855,9 +859,42 @@ def merge_lesson_markdown(overview: str, assessment: str) -> str:
     return f"{overview_body}\n\n## Assessment\n\n{assessment_body}\n"
 
 
-def md_to_html(markdown_text: str) -> str:
+def rewrite_published_markdown_links(markdown_text: str) -> str:
+    """Point lesson-doc markdown links to generated HTML pages."""
+
+    link_re = re.compile(r"\]\(([^)]+)\)")
+
+    def replace_link(match: re.Match[str]) -> str:
+        target = match.group(1).strip()
+        if not target:
+            return match.group(0)
+        if target.startswith(("#", "mailto:", "http://", "https://")):
+            return match.group(0)
+
+        path_part = target
+        fragment = ""
+        query = ""
+        if "#" in path_part:
+            path_part, frag_value = path_part.split("#", 1)
+            fragment = f"#{frag_value}"
+        if "?" in path_part:
+            path_part, query_value = path_part.split("?", 1)
+            query = f"?{query_value}"
+
+        if Path(path_part).name not in PUBLISHED_MD_HTML_BASENAMES:
+            return match.group(0)
+
+        html_path = path_part[:-3] + ".html"
+        return f"]({html_path}{query}{fragment})"
+
+    return link_re.sub(replace_link, markdown_text)
+
+
+def md_to_html(markdown_text: str, *, rewrite_doc_links: bool = False) -> str:
     normalized_md = normalize_nested_list_indentation(markdown_text)
     normalized_md = normalize_indented_fenced_code_blocks(normalized_md)
+    if rewrite_doc_links:
+        normalized_md = rewrite_published_markdown_links(normalized_md)
     return markdown.markdown(
         normalized_md,
         extensions=["fenced_code", "tables", "toc", "sane_lists"],
@@ -903,9 +940,34 @@ def discover_lessons() -> list[Path]:
     return sorted(lesson_dirs, key=lambda path: path.name)
 
 
+def copy_lesson_sources(lesson_dir: Path, lesson_site_dir: Path) -> None:
+    def ignore_names(path: str, names: list[str]) -> set[str]:
+        ignored: set[str] = set()
+        path_obj = Path(path)
+        for name in names:
+            child = path_obj / name
+            if child.is_dir():
+                if any(fnmatch.fnmatch(name, glob) for glob in SKIP_SOURCE_DIR_GLOBS):
+                    ignored.add(name)
+            else:
+                if any(fnmatch.fnmatch(name, glob) for glob in SKIP_SOURCE_FILE_GLOBS):
+                    ignored.add(name)
+        return ignored
+
+    for name in ("overview.md", "assessment.md", "notes.md", "code"):
+        src = lesson_dir / name
+        if not src.exists():
+            continue
+        dst = lesson_site_dir / name
+        if src.is_dir():
+            shutil.copytree(src, dst, ignore=ignore_names)
+        else:
+            shutil.copy2(src, dst)
+
+
 def write_site_files(lessons: list[tuple[str, str]]) -> None:
     lesson_links = "".join(
-        f'<li><a href="lessons/{slug}.html">{title}</a></li>\n'
+        f'<li><a href="lessons/{slug}/">{title}</a></li>\n'
         for slug, title in lessons
     )
     index_body = (
@@ -944,15 +1006,52 @@ def main() -> int:
 
         overview_text = read_text(overview_path)
         assessment_text = read_text(assessment_path)
+        overview_body = strip_leading_h1(overview_text)
+        assessment_body = strip_leading_h1(assessment_text)
         merged_md = merge_lesson_markdown(overview_text, assessment_text)
         lesson_title = first_heading(overview_text, lesson_dir.name)
-        lesson_html = md_to_html(merged_md)
+        lesson_html = md_to_html(merged_md, rewrite_doc_links=True)
+        overview_html = md_to_html(overview_body, rewrite_doc_links=True)
+        assessment_html = md_to_html(assessment_body, rewrite_doc_links=True)
 
-        out_path = SITE_LESSONS_DIR / f"{lesson_dir.name}.html"
+        lesson_site_dir = SITE_LESSONS_DIR / lesson_dir.name
+        lesson_site_dir.mkdir(parents=True, exist_ok=True)
+        copy_lesson_sources(lesson_dir, lesson_site_dir)
+
+        out_path = lesson_site_dir / "index.html"
         out_path.write_text(
-            render_page(lesson_title, lesson_html, asset_prefix="../"),
+            render_page(lesson_title, lesson_html, asset_prefix="../../"),
             encoding="utf-8",
         )
+
+        overview_out_path = lesson_site_dir / "overview.html"
+        overview_out_path.write_text(
+            render_page(f"{lesson_title} — Overview", overview_html, asset_prefix="../../"),
+            encoding="utf-8",
+        )
+
+        assessment_out_path = lesson_site_dir / "assessment.html"
+        assessment_out_path.write_text(
+            render_page(
+                f"{lesson_title} — Assessment",
+                assessment_html,
+                asset_prefix="../../",
+            ),
+            encoding="utf-8",
+        )
+
+        notes_path = lesson_dir / "notes.md"
+        if notes_path.exists():
+            notes_text = read_text(notes_path)
+            notes_body = strip_leading_h1(notes_text)
+            notes_title = first_heading(notes_text, f"{lesson_title} Notes")
+            notes_html = md_to_html(notes_body, rewrite_doc_links=True)
+            notes_out_path = lesson_site_dir / "notes.html"
+            notes_out_path.write_text(
+                render_page(notes_title, notes_html, asset_prefix="../../"),
+                encoding="utf-8",
+            )
+
         lesson_rows.append((lesson_dir.name, lesson_title))
 
     write_site_files(lesson_rows)

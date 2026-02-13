@@ -503,3 +503,36 @@ Updated bootstrap scaffolding to include the chat-archive convention:
 - scaffolded `README.md` lists `CHAT.adoc`
 - `--clean` now removes scaffolded `CHAT.adoc`
 ----
+
+== Turn 26
+
+User::
++
+----
+assessment files are not converted to html during publishing.
+----
+
+Assistant::
++
+----
+Implemented publishing fix:
+
+- `scripts/build_site.py` now generates lesson `overview.html` and `assessment.html` pages (and `notes.html` when `notes.md` exists)
+- lesson-doc links to `overview.md`, `assessment.md`, and `notes.md` are rewritten to `.html` in published pages
+- kept raw source files copied for source browsing
+- mirrored the same updated `build_site.py` template into `bootstrap-03-scaffold.sh`
+----
+
+== Turn 27
+
+User::
++
+----
+yes
+----
+
+Assistant::
++
+----
+Committed and pushed the publishing fix for generated lesson HTML pages and links.
+----
