@@ -9,3 +9,4 @@
 - 2026-02-13: Installed `markdown` globally and validated site generation with `/usr/bin/python3 scripts/build_site.py` (8 lessons generated).
 - 2026-02-13: Installed `markdown` in project `.venv` and validated site generation with `./.venv/bin/python scripts/build_site.py` (8 lessons generated).
 - 2026-02-13: Updated `scripts/build_site.py` and bootstrap template to remove duplicate lesson H1 in rendered pages, preserve nested list structure from two-space-authored Markdown, and render list-nested code blocks correctly.
+- 2026-02-13: Expanded `lessons/L00-vscode-env/code/verify_env.py` to include full L00 tool-map checks (host tools, Python packages, `PICO_SDK_PATH`, VS Code CLI, and required extension IDs).

@@ -197,13 +197,21 @@ python3 lessons/L00-vscode-env/code/verify_env.py
 
 What this script checks:
 
-- required: `git`, `python3`, `cmake`
-- recommended for later lessons: `ninja`, `arm-none-eabi-gcc`, `picotool`, `mpremote`
+- required host tools: `git`, `python3`, `cmake`
+- recommended host tools: `ninja`, `arm-none-eabi-gcc`, `picotool`, `mpremote`
+- recommended Python packages: `pyserial`, `mpremote`
+- recommended SDK setup: `PICO_SDK_PATH` points to a valid `pico-sdk` directory
+- VS Code checks: `code` CLI availability and required extension IDs (when `code --list-extensions` is available)
 
 Expected result:
 
 - You see a status table and a final summary line.
 - Missing required tools are clearly listed.
+- Python package checks (`pyserial`, `mpremote`) are for the Python interpreter you used to run the script.
+
+If you use a project virtual environment:
+
+- run `./.venv/bin/python lessons/L00-vscode-env/code/verify_env.py` so package checks match your `.venv`.
 
 If you see "python3: command not found":
 

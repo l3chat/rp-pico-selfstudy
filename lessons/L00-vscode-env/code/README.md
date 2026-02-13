@@ -4,7 +4,7 @@ This folder contains minimal runnable examples used in lesson L00.
 
 ## Files
 
-- `verify_env.py` — checks host tooling (required + recommended)
+- `verify_env.py` — checks host tools, Python packages, `PICO_SDK_PATH`, and VS Code extensions
 - `micropython/hello_repl.py` — serial heartbeat script for MicroPython
 - `pico-sdk-usb-hello/` — minimal Pico SDK USB serial project
 
