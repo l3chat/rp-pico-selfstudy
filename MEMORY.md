@@ -64,3 +64,4 @@ Codex should keep it updated when decisions are made.
 - 2026-02-13: Local shell `python3` points to `/home/lechat/envdf/bin/python3` (no `markdown`), while global `/usr/bin/python3` has `markdown`; site build validated with `/usr/bin/python3 scripts/build_site.py`.
 - 2026-02-13: Installed `markdown` in project `.venv`; site build validated with `./.venv/bin/python scripts/build_site.py` (8 lessons generated). `.venv/` is now ignored in git.
 - 2026-02-13: Updated Codex prompt templates and bootstrap guidance to prefer `.venv` for local `build_site.py` checks, with `python3` as fallback when `.venv` is not used.
+- 2026-02-13: Updated site generator and bootstrap template to strip duplicate lesson H1 from article HTML, normalize nested list indentation for two-space-authored Markdown, and convert list-indented fenced code blocks into nested code blocks for reliable rendering.

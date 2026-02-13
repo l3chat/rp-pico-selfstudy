@@ -94,18 +94,101 @@ def first_heading(markdown_text: str, fallback: str) -> str:
     return fallback
 
 
+def strip_leading_h1(markdown_text: str) -> str:
+    lines = markdown_text.splitlines()
+    idx = 0
+    while idx < len(lines) and not lines[idx].strip():
+        idx += 1
+    if idx < len(lines) and lines[idx].startswith("# "):
+        lines = lines[:idx] + lines[idx + 1 :]
+    return "\n".join(lines).lstrip("\n")
+
+
+def normalize_nested_list_indentation(markdown_text: str) -> str:
+    """Adapt 2-space nested list authoring to Python-Markdown's parser behavior.
+
+    Authoring rules in AGENTS.md use two-space nested lists. Python-Markdown
+    often needs deeper indentation to keep nested items under their parent list.
+    """
+    out: list[str] = []
+    in_fence = False
+    list_item_re = re.compile(r"^( +)([-*+] |\d+\. )")
+
+    for line in markdown_text.splitlines():
+        if line.startswith("```"):
+            in_fence = not in_fence
+            out.append(line)
+            continue
+
+        if not in_fence:
+            match = list_item_re.match(line)
+            if match:
+                leading_spaces = len(match.group(1))
+                if leading_spaces >= 2:
+                    line = (" " * (leading_spaces * 2)) + line[leading_spaces:]
+
+        out.append(line)
+
+    return "\n".join(out)
+
+
+def normalize_indented_fenced_code_blocks(markdown_text: str) -> str:
+    """Render list-indented fenced code blocks as nested indented code blocks.
+
+    Python-Markdown does not reliably parse fenced code blocks nested in lists.
+    This preserves readability for lesson steps with embedded commands.
+    """
+    lines = markdown_text.splitlines()
+    out: list[str] = []
+    idx = 0
+    opening_re = re.compile(r"^( +)```([A-Za-z0-9_-]*)\s*$")
+
+    while idx < len(lines):
+        line = lines[idx]
+        open_match = opening_re.match(line)
+        if not open_match:
+            out.append(line)
+            idx += 1
+            continue
+
+        fence_indent = open_match.group(1)
+        close_re = re.compile(rf"^{re.escape(fence_indent)}```\s*$")
+
+        idx += 1
+        code_lines: list[str] = []
+        while idx < len(lines) and not close_re.match(lines[idx]):
+            code_line = lines[idx]
+            if code_line.startswith(fence_indent):
+                code_line = code_line[len(fence_indent) :]
+            code_lines.append(code_line)
+            idx += 1
+
+        if idx < len(lines):
+            idx += 1
+
+        # Indent enough to stay attached to the owning list item.
+        code_indent = " " * (len(fence_indent) + 5)
+        if out and out[-1] != "":
+            out.append("")
+        for code_line in code_lines:
+            out.append(code_indent + code_line)
+        out.append("")
+
+    return "\n".join(out)
+
+
 def merge_lesson_markdown(overview: str, assessment: str) -> str:
-    assessment_body = assessment
-    if assessment_body.startswith("# "):
-        parts = assessment_body.splitlines()
-        assessment_body = "\n".join(parts[1:]).lstrip()
-    return f"{overview.rstrip()}\n\n## Assessment\n\n{assessment_body.strip()}\n"
+    overview_body = strip_leading_h1(overview).strip()
+    assessment_body = strip_leading_h1(assessment).strip()
+    return f"{overview_body}\n\n## Assessment\n\n{assessment_body}\n"
 
 
 def md_to_html(markdown_text: str) -> str:
+    normalized_md = normalize_nested_list_indentation(markdown_text)
+    normalized_md = normalize_indented_fenced_code_blocks(normalized_md)
     return markdown.markdown(
-        markdown_text,
-        extensions=["fenced_code", "tables", "toc"],
+        normalized_md,
+        extensions=["fenced_code", "tables", "toc", "sane_lists"],
         output_format="html5",
     )
 
