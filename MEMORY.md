@@ -18,6 +18,8 @@ Codex should keep it updated when decisions are made.
 - Chat archive convention:
   - save project chat history in root `CHAT.adoc`
   - keep chat history append-only
+  - auto-append every user/assistant turn to avoid end-of-session loss
+  - do not require commit/push for chat-archive updates
   - do not include AsciiDoc TOC directives in `CHAT.adoc`
 - Publishing model:
   - `lessons/` is the single source of truth
@@ -105,3 +107,4 @@ Codex should keep it updated when decisions are made.
 - 2026-02-13: Added formal chat-archive discipline to `AGENTS.md` and memory conventions: save project chats in append-only `CHAT.adoc`.
 - 2026-02-13: Propagated chat-archive conventions into `bootstrap-03-scaffold.sh` so scaffolded repos now include `CHAT.adoc`, AGENTS/MEMORY chat rules, README mention, and clean-mode handling.
 - 2026-02-13: Updated site publishing to generate per-lesson `overview.html` and `assessment.html` (plus optional `notes.html`) and rewrite lesson-doc links from `.md` to `.html`; mirrored the same build script logic into bootstrap scaffolding.
+- 2026-02-13: Switched chat archiving to per-turn auto-append (no commit/push required) and synced the same rule into bootstrap AGENTS/MEMORY templates.

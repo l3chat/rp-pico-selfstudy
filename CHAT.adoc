@@ -562,3 +562,59 @@ Assistant::
 ----
 Committed and pushed the no-TOC chat archive update.
 ----
+
+== Turn 30
+
+User::
++
+----
+how helpful to you is chat.md?
+----
+
+Assistant::
++
+----
+It helps for continuity, mainly as secondary context after `AGENTS.md`, `MEMORY.md`, and `TODO.md`.
+----
+
+== Turn 31
+
+User::
++
+----
+if i end the session now, the last turn won't be saved. how can i make it possible?
+----
+
+Assistant::
++
+----
+Suggested a pre-exit command pattern (`archive last turn, commit, push`) so the latest turn is appended before session end.
+----
+
+== Turn 32
+
+User::
++
+----
+it would be great to have an autoappender without commit/push.
+----
+
+Assistant::
++
+----
+Implemented per-turn chat auto-append convention without commit/push by updating `AGENTS.md`, `MEMORY.md`, `TODO.md`, and bootstrap templates.
+----
+
+== Turn 33
+
+User::
++
+----
+commit, push and
+----
+
+Assistant::
++
+----
+Committed and pushed the pending per-turn chat auto-append updates; asked what you want after "and".
+----

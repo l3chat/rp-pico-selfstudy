@@ -285,6 +285,9 @@ Codex should keep it updated when decisions are made.
 - Chat archive convention:
   - save project chat history in root `CHAT.adoc`
   - keep chat history append-only
+  - auto-append every user/assistant turn to avoid end-of-session loss
+  - do not require commit/push for chat-archive updates
+  - do not include AsciiDoc TOC directives in `CHAT.adoc`
 
 ## Hardware assumptions (update when confirmed)
 - Target boards:
@@ -382,7 +385,9 @@ The repo must remain consistent and runnable.
 ## Chat archive discipline
 - Save project chat history in root `CHAT.adoc`.
 - Keep it append-only; do not delete previous turns.
-- After each substantial session, append new user/assistant turns so project context is preserved.
+- Auto-append every user/assistant turn (not only end-of-session summaries).
+- Write chat-archive updates without requiring commit/push unless explicitly requested.
+- Do not add AsciiDoc TOC directives (`:toc:` / `:toclevels:`) to `CHAT.adoc`.
 
 ## Mandatory lesson structure
 Each lesson directory in `/lessons/` must contain:
@@ -1239,7 +1244,7 @@ Recommended next steps (Codex-only workflow):
    (or python3 scripts/build_site.py if you are not using .venv)
 6) Keep MEMORY.md updated when hardware/toolchain decisions are made.
 7) Track active/completed tasks in TODO.md (`todos` / `done`).
-8) Keep CHAT.adoc append-only and add key project chat turns.
+8) Keep CHAT.adoc append-only and auto-append every user/assistant turn.
 
 Notes:
 - This script does not touch remotes and does not push.

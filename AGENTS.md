@@ -43,7 +43,9 @@ The repo must remain consistent and runnable.
 ## Chat archive discipline
 - Save project chat history in root `CHAT.adoc`.
 - Keep it append-only; do not delete previous turns.
-- After each substantial session, append new user/assistant turns so project context is preserved.
+- Auto-append every user/assistant turn (not only end-of-session summaries).
+- Write chat-archive updates without requiring commit/push unless explicitly requested.
+- Do not add AsciiDoc TOC directives (`:toc:` / `:toclevels:`) to `CHAT.adoc`.
 
 ## Mandatory lesson structure
 Each lesson directory in `/lessons/` must contain:

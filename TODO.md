@@ -25,3 +25,4 @@
 - 2026-02-13: Updated `bootstrap-03-scaffold.sh` so scaffolded repos include `CHAT.adoc` conventions (generated file, AGENTS/MEMORY guidance, README listing, and `--clean` removal path).
 - 2026-02-13: Fixed publishing gap where lesson assessments stayed Markdown-only by generating `overview.html` and `assessment.html` per lesson (plus optional `notes.html`), rewriting lesson doc links to `.html`, and syncing this behavior in bootstrap-generated `scripts/build_site.py`.
 - 2026-02-13: Disabled chat archive table of contents generation by removing AsciiDoc `:toc:` directives from `CHAT.adoc` and the scaffolded `CHAT.adoc` template in `bootstrap-03-scaffold.sh`.
+- 2026-02-13: Enabled per-turn chat auto-append without commit/push by updating repo and bootstrap chat-archive conventions.
