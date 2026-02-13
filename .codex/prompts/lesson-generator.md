@@ -15,4 +15,5 @@ Update:
 - PLAN.md: mark the lesson as ☐ in progress (or ☑ done if fully complete)
 - MEMORY.md: record any decisions or discovered pitfalls
 - Ensure site generation still works by running:
-  - `python3 scripts/build_site.py`
+  - `./.venv/bin/python scripts/build_site.py` (preferred)
+  - or `python3 scripts/build_site.py` if `.venv` is not used

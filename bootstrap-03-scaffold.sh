@@ -398,6 +398,17 @@ Before considering a lesson done:
 - Code runs/builds (as applicable).
 - Assessment includes rubric (and preferably answers/hints).
 - Site build script still runs after your changes.
+
+## Markdown formatting rules (mandatory)
+- Never write “one-line” Markdown. Use normal line breaks.
+- Headings (`#`, `##`, `###`) must be on their own line and followed by a blank line.
+- Paragraphs must be separated by a blank line.
+- Lists:
+  - Put a blank line before a list.
+  - Each list item must be on its own line starting with `- ` or `1. `.
+  - Nested lists must be indented under the parent list item by **two spaces**.
+  - Do not write inline lists like: `text: - a - b - c` (forbidden).
+- Code fences must be surrounded by blank lines.
 MD
 
 # -----------------------------------------------------------------------------
@@ -563,7 +574,8 @@ Update:
 - PLAN.md: mark the lesson as ☐ in progress (or ☑ done if fully complete)
 - MEMORY.md: record any decisions or discovered pitfalls
 - Ensure site generation still works by running:
-  - `python3 scripts/build_site.py`
+  - `./.venv/bin/python scripts/build_site.py` (preferred)
+  - or `python3 scripts/build_site.py` if `.venv` is not used
 MD
 
 write_file ".codex/prompts/consistency-check.md" <<'MD'
@@ -574,9 +586,10 @@ Follow AGENTS.md strictly.
 Task:
 - Scan the repository for consistency:
   - Every lesson has overview.md and assessment.md
-  - `python3 scripts/build_site.py` succeeds
+  - Site build succeeds (`./.venv/bin/python scripts/build_site.py` preferred; `python3 scripts/build_site.py` if `.venv` is not used)
   - PLAN.md matches existing lessons
   - MEMORY.md has no contradictions
+  - Verify that all list items are on separate lines; flag inline `: -` patterns
 
 Output:
 - A short report in Markdown
@@ -630,6 +643,9 @@ site/
 # Python cache
 __pycache__/
 *.pyc
+
+# Local virtual environments
+.venv/
 MD
 
 write_file "scripts/build_site.py" <<'PY'
@@ -1018,7 +1034,8 @@ Recommended next steps (Codex-only workflow):
 2) Use Codex agent mode and follow AGENTS.md.
 3) Start with L00 and fully implement it (overview + assessment + runnable steps).
 4) Use .codex/prompts/lesson-generator.md as your standard prompt template.
-5) Build a local preview site with: python3 scripts/build_site.py
+5) Build a local preview site with: ./.venv/bin/python scripts/build_site.py
+   (or python3 scripts/build_site.py if you are not using .venv)
 6) Keep MEMORY.md updated when hardware/toolchain decisions are made.
 7) Track active/completed tasks in TODO.md (`todos` / `done`).
 

@@ -73,3 +73,14 @@ Before considering a lesson done:
 - Code runs/builds (as applicable).
 - Assessment includes rubric (and preferably answers/hints).
 - Site build script still runs after your changes.
+
+## Markdown formatting rules (mandatory)
+- Never write “one-line” Markdown. Use normal line breaks.
+- Headings (`#`, `##`, `###`) must be on their own line and followed by a blank line.
+- Paragraphs must be separated by a blank line.
+- Lists:
+  - Put a blank line before a list.
+  - Each list item must be on its own line starting with `- ` or `1. `.
+  - Nested lists must be indented under the parent list item by **two spaces**.
+  - Do not write inline lists like: `text: - a - b - c` (forbidden).
+- Code fences must be surrounded by blank lines.

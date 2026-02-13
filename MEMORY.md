@@ -19,6 +19,9 @@ Codex should keep it updated when decisions are made.
   - `lessons/` is the single source of truth
   - GitHub Actions builds and deploys a generated `site/` artifact
   - no duplicated lesson copies are maintained in `docs/`
+- Python tooling convention:
+  - prefer project `.venv` for local Python commands when available
+  - use `./.venv/bin/python scripts/build_site.py` for local site-build checks
 - Phase bootstrap approach:
   - Phase 1: local repo init + first commit contains bootstrap scripts
   - Phase 2: add remote + push
@@ -55,3 +58,9 @@ Codex should keep it updated when decisions are made.
 - YYYY-MM-DD: Phase 3 scaffold created.
 - 2026-02-12: Completed full L00 lesson with runnable environment-check and serial smoke-test code.
 - 2026-02-12: Added repo-level `TODO.md` and aligned AGENTS/bootstrap scaffolding with `todos`/`done` tracking.
+- 2026-02-13: Normalized lesson Markdown structure across `lessons/**/*.md` to follow AGENTS formatting rules (blank lines around headings/lists/code fences and proper two-space nested lists).
+- 2026-02-13: Added consistency-check prompt rule to flag inline list patterns (`: -`) and mirrored it in bootstrap scaffold generation.
+- 2026-02-13: Updated bootstrap AGENTS template to include mandatory Markdown formatting rules so scaffolded repos inherit current style constraints.
+- 2026-02-13: Local shell `python3` points to `/home/lechat/envdf/bin/python3` (no `markdown`), while global `/usr/bin/python3` has `markdown`; site build validated with `/usr/bin/python3 scripts/build_site.py`.
+- 2026-02-13: Installed `markdown` in project `.venv`; site build validated with `./.venv/bin/python scripts/build_site.py` (8 lessons generated). `.venv/` is now ignored in git.
+- 2026-02-13: Updated Codex prompt templates and bootstrap guidance to prefer `.venv` for local `build_site.py` checks, with `python3` as fallback when `.venv` is not used.

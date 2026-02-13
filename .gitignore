@@ -4,3 +4,6 @@ site/
 # Python cache
 __pycache__/
 *.pyc
+
+# Local virtual environments
+.venv/
