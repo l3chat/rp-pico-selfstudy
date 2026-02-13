@@ -19,6 +19,9 @@ Codex should keep it updated when decisions are made.
   - `lessons/` is the single source of truth
   - GitHub Actions builds and deploys a generated `site/` artifact
   - no duplicated lesson copies are maintained in `docs/`
+  - lesson pages are published at `site/lessons/<lesson>/index.html` and include
+    copied lesson source files (`overview.md`, `assessment.md`, optional `notes.md`,
+    and `code/`) so relative source links stay valid
 - Python tooling convention:
   - prefer project `.venv` for local Python commands when available
   - use `./.venv/bin/python scripts/build_site.py` for local site-build checks
@@ -94,3 +97,4 @@ Codex should keep it updated when decisions are made.
 - 2026-02-13: Clarified L00 Zero-board firmware guidance: Zero board names may not have dedicated official MicroPython pages, so start from chip-family `RPI_PICO`/`RPI_PICO2` and confirm vendor-specific notes.
 - 2026-02-13: Added L00 serial usage basics and troubleshooting based on real session outcomes: `miniterm` key controls, locked-port detection/cleanup (`fuser` + `kill`), no-output recovery by re-uploading `hello_repl.py` as `main.py`, and explicit MicroPython paste-mode instructions.
 - 2026-02-13: Reordered L00 MicroPython steps for a more natural flow (flash firmware, then run smoke test) and added navigation/source-file links in overview, assessment, and code README.
+- 2026-02-13: Updated site build output structure from flat lesson pages (`lessons/<lesson>.html`) to per-lesson directories (`lessons/<lesson>/index.html`) and copied lesson source files into publish output so relative links like `code/...` and `assessment.md` resolve on published pages.

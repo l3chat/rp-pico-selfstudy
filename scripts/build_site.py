@@ -7,6 +7,7 @@ Usage:
 
 from __future__ import annotations
 
+import fnmatch
 import re
 import shutil
 from pathlib import Path
@@ -24,6 +25,8 @@ LESSONS_DIR = ROOT / "lessons"
 SITE_DIR = ROOT / "site"
 SITE_LESSONS_DIR = SITE_DIR / "lessons"
 LESSON_DIR_RE = re.compile(r"^L[0-9A-Z]+-.+")
+SKIP_SOURCE_DIR_GLOBS = ("build", "build-*", "__pycache__", ".pytest_cache")
+SKIP_SOURCE_FILE_GLOBS = ("*.pyc",)
 
 CSS = """
 :root {
@@ -231,9 +234,34 @@ def discover_lessons() -> list[Path]:
     return sorted(lesson_dirs, key=lambda path: path.name)
 
 
+def copy_lesson_sources(lesson_dir: Path, lesson_site_dir: Path) -> None:
+    def ignore_names(path: str, names: list[str]) -> set[str]:
+        ignored: set[str] = set()
+        path_obj = Path(path)
+        for name in names:
+            child = path_obj / name
+            if child.is_dir():
+                if any(fnmatch.fnmatch(name, glob) for glob in SKIP_SOURCE_DIR_GLOBS):
+                    ignored.add(name)
+            else:
+                if any(fnmatch.fnmatch(name, glob) for glob in SKIP_SOURCE_FILE_GLOBS):
+                    ignored.add(name)
+        return ignored
+
+    for name in ("overview.md", "assessment.md", "notes.md", "code"):
+        src = lesson_dir / name
+        if not src.exists():
+            continue
+        dst = lesson_site_dir / name
+        if src.is_dir():
+            shutil.copytree(src, dst, ignore=ignore_names)
+        else:
+            shutil.copy2(src, dst)
+
+
 def write_site_files(lessons: list[tuple[str, str]]) -> None:
     lesson_links = "".join(
-        f'<li><a href="lessons/{slug}.html">{title}</a></li>\n'
+        f'<li><a href="lessons/{slug}/">{title}</a></li>\n'
         for slug, title in lessons
     )
     index_body = (
@@ -276,9 +304,13 @@ def main() -> int:
         lesson_title = first_heading(overview_text, lesson_dir.name)
         lesson_html = md_to_html(merged_md)
 
-        out_path = SITE_LESSONS_DIR / f"{lesson_dir.name}.html"
+        lesson_site_dir = SITE_LESSONS_DIR / lesson_dir.name
+        lesson_site_dir.mkdir(parents=True, exist_ok=True)
+        copy_lesson_sources(lesson_dir, lesson_site_dir)
+
+        out_path = lesson_site_dir / "index.html"
         out_path.write_text(
-            render_page(lesson_title, lesson_html, asset_prefix="../"),
+            render_page(lesson_title, lesson_html, asset_prefix="../../"),
             encoding="utf-8",
         )
         lesson_rows.append((lesson_dir.name, lesson_title))

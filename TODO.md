@@ -20,3 +20,4 @@
 - 2026-02-13: Clarified L00 Zero-board firmware wording: dedicated official board-name pages may be absent; use chip-family `RPI_PICO`/`RPI_PICO2` pages first, then vendor guidance.
 - 2026-02-13: Expanded L00 serial guidance with practical recovery patterns from live testing: `miniterm` controls, locked-port handling (`fuser`/`kill`), no-output recovery by re-uploading `hello_repl.py` as `main.py`, and REPL paste-mode steps.
 - 2026-02-13: Added L00 navigation/source-file links and reordered MicroPython steps to a more natural sequence (flash firmware before running the smoke test).
+- 2026-02-13: Fixed published source-link paths by changing site generation to per-lesson directories (`site/lessons/<lesson>/index.html`) and copying lesson source files into each lesson output directory.
