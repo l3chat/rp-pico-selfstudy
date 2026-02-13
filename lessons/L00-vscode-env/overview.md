@@ -17,6 +17,72 @@ By the end of this lesson, you will have:
   - RP2040-Zero
   - RP2350-Zero
 
+## Tool map (what each tool does, install names, and where to get it)
+Use this section as the exact install reference for L00.
+
+### VS Code and extensions
+- `Visual Studio Code`
+  - What it does: main editor + terminal where you run lesson commands.
+  - App name to install: `Visual Studio Code`
+  - Get it from: `https://code.visualstudio.com/`
+- `ms-python.python`
+  - What it does: Python language support (run/debug Python, linting, IntelliSense).
+  - Extension ID to install: `ms-python.python`
+  - Get it from: VS Code Extensions view (search exact ID).
+- `ms-vscode.cpptools`
+  - What it does: C/C++ language support for Pico SDK code.
+  - Extension ID to install: `ms-vscode.cpptools`
+  - Get it from: VS Code Extensions view (search exact ID).
+- `ms-vscode.cmake-tools`
+  - What it does: CMake project configure/build support in VS Code.
+  - Extension ID to install: `ms-vscode.cmake-tools`
+  - Get it from: VS Code Extensions view (search exact ID).
+
+### Required host tools (checked by `verify_env.py`)
+- `git` (Git)
+  - What it does: tracks project changes and lets you commit/push course work.
+  - Common install name: `git`
+  - Get it from: `https://git-scm.com/downloads`
+- `python3` (Python 3)
+  - What it does: runs helper scripts in this repo (`verify_env.py`) and pip packages.
+  - Common install name: `python3` (or Python 3 installer on Windows/macOS)
+  - Get it from: `https://www.python.org/downloads/`
+- `cmake` (CMake)
+  - What it does: generates build files for Pico SDK C/C++ projects.
+  - Common install name: `cmake`
+  - Get it from: `https://cmake.org/download/`
+
+### Recommended tools (used in later lessons)
+- `ninja`
+  - What it does: fast build backend used by CMake in many embedded projects.
+  - Common install name: `ninja` (some Linux distros use `ninja-build`)
+  - Get it from: `https://ninja-build.org/`
+- `arm-none-eabi-gcc` (Arm GNU Toolchain)
+  - What it does: compiles C/C++ firmware for RP2040/RP2350 targets.
+  - Common install names: `gcc-arm-none-eabi` (Linux package managers), `arm-none-eabi-gcc` (Homebrew)
+  - Get it from: `https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads`
+- `picotool`
+  - What it does: inspects/manages Raspberry Pi Pico-family boards over USB.
+  - Install/release name: `picotool`
+  - Get it from: `https://github.com/raspberrypi/picotool/releases`
+- `mpremote`
+  - What it does: command-line tool to interact with MicroPython boards.
+  - Python package name: `mpremote`
+  - Install with: `python3 -m pip install --user mpremote`
+  - Get it from: `https://pypi.org/project/mpremote/`
+
+### Other packages used in L00
+- `pyserial`
+  - What it does: provides the serial terminal module used in this lesson (`miniterm`).
+  - Python package name: `pyserial`
+  - Install with: `python3 -m pip install --user pyserial`
+  - Get it from: `https://pypi.org/project/pyserial/`
+- `pico-sdk`
+  - What it does: official C/C++ SDK used to build firmware for Pico-family boards.
+  - Source package name: `pico-sdk`
+  - Get it from: `https://github.com/raspberrypi/pico-sdk`
+  - Docs: `https://www.raspberrypi.com/documentation/microcontrollers/c_sdk.html`
+
 ## Safety and board-specific notes
 - This lesson is intentionally board-neutral and avoids pin-specific examples.
 - If a board detail is unclear (boot mode button sequence, UF2 drive label, onboard LED pin), check your board vendor docs and record findings in `MEMORY.md`.
@@ -186,6 +252,7 @@ Answer in your own words:
 ### Final checklist for L00
 - [ ] VS Code installed and repo opened
 - [ ] Required extensions installed
+- [ ] I can map each tool command to the correct package/app name
 - [ ] `verify_env.py` executed
 - [ ] Serial monitor command prepared
 - [ ] MicroPython smoke-test file reviewed

@@ -1,6 +1,6 @@
 # TODO
 
 ## todos
-L00 describe the tools, give correct package names, show where to get them
 
 ## done
+- 2026-02-12: L00 tool map now states what each tool does, plus package/extension IDs and official install sources.

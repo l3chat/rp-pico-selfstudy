@@ -6,7 +6,7 @@
 - Then run the practical task and self-grade with the rubric.
 
 ## Quiz (short self-check)
-1. Name the 3 required host tools checked by `verify_env.py`.
+1. Name the 3 required host tools checked by `verify_env.py`, what each one does, and the package/app names you used to install them.
 2. What serial command template is used in this lesson to open a terminal monitor?
 3. Why does the MicroPython smoke test avoid onboard LED examples in L00?
 4. What environment variable must be set before building the Pico SDK sample?
@@ -52,6 +52,9 @@ Scoring:
 
 ## Answer key / hints
 1. Required tools: `git`, `python3`, `cmake`.
+   What they do: `git` tracks changes, `python3` runs repo scripts, `cmake` configures SDK builds.
+   Common install names: `git`, Python 3 installer/`python3`, `cmake`.
+   Official sources: `git-scm.com`, `python.org`, `cmake.org`.
 2. `python3 -m serial.tools.miniterm <PORT> 115200`
 3. LED pin mapping may differ across supported boards; L00 avoids unverified hardware assumptions.
 4. `PICO_SDK_PATH`
