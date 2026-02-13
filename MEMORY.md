@@ -18,6 +18,7 @@ Codex should keep it updated when decisions are made.
 - Chat archive convention:
   - save project chat history in root `CHAT.adoc`
   - keep chat history append-only
+  - do not include AsciiDoc TOC directives in `CHAT.adoc`
 - Publishing model:
   - `lessons/` is the single source of truth
   - GitHub Actions builds and deploys a generated `site/` artifact

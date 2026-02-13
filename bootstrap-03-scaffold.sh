@@ -329,8 +329,6 @@ MD
 # -----------------------------------------------------------------------------
 write_file "CHAT.adoc" <<'ADOC'
 = Chat Transcript
-:toc:
-:toclevels: 2
 
 NOTE: Append-only project chat archive.
 ADOC

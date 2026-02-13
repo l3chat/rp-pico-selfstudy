@@ -1,6 +1,4 @@
 = Chat Transcript
-:toc:
-:toclevels: 2
 
 NOTE: Transcript of this session (user + assistant messages).
 
@@ -535,4 +533,32 @@ Assistant::
 +
 ----
 Committed and pushed the publishing fix for generated lesson HTML pages and links.
+----
+
+== Turn 28
+
+User::
++
+----
+do not create table of contents
+----
+
+Assistant::
++
+----
+Removed table-of-contents directives from `CHAT.adoc` and from the `bootstrap-03-scaffold.sh` chat template so future archives are created without a TOC.
+----
+
+== Turn 29
+
+User::
++
+----
+yes
+----
+
+Assistant::
++
+----
+Committed and pushed the no-TOC chat archive update.
 ----
