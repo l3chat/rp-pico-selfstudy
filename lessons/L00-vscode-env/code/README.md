@@ -47,6 +47,43 @@ If it still fails after relogin:
 sudo fuser -v /dev/ttyACM0
 ```
 
+## MicroPython smoke test (L00)
+
+File:
+
+- `micropython/hello_repl.py`
+
+MicroPython UF2 download pages:
+
+- index: `https://micropython.org/download/`
+- Pico (RP2040): `https://micropython.org/download/RPI_PICO/`
+- Pico 2 (RP2350): `https://micropython.org/download/RPI_PICO2/`
+
+Flash the UF2 before running the smoke test:
+
+1. Hold `BOOTSEL` while plugging in USB.
+2. Copy the `.uf2` file to the `RPI-RP2` drive.
+3. Wait for the board to reboot.
+4. Open serial monitor again.
+
+If you use RP2040-Zero or RP2350-Zero, verify board-specific UF2 guidance from the board vendor docs.
+
+Behavior:
+
+- prints `L00 MicroPython smoke test starting` once
+- prints `tick 0`, `tick 1`, `tick 2`, ... once per second
+- uses no LED pin so it stays board-neutral
+
+Run options:
+
+- paste into REPL and run directly
+- or upload as `main.py` on a MicroPython board and reset
+
+Expected observable result:
+
+- startup line appears once
+- then `tick` lines continue every second on serial output
+
 ## Pico SDK install (Linux quick path)
 
 ```bash

@@ -1,7 +1,8 @@
 """MicroPython serial smoke test for L00.
 
 Paste or upload this script to a board running MicroPython.
-It prints a heartbeat counter once per second.
+It prints one startup line, then a heartbeat counter once per second.
+In REPL mode, stop it with Ctrl+C.
 """
 
 import time

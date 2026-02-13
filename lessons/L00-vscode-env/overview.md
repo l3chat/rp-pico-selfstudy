@@ -302,11 +302,50 @@ Open:
 
 - `lessons/L00-vscode-env/code/micropython/hello_repl.py`
 
-This file only prints counters over serial. It does not assume LED pins.
+Get the MicroPython UF2 firmware:
+
+- Downloads index:
+  - `https://micropython.org/download/`
+- Raspberry Pi Pico (RP2040):
+  - `https://micropython.org/download/RPI_PICO/`
+- Raspberry Pi Pico 2 (RP2350):
+  - `https://micropython.org/download/RPI_PICO2/`
+
+Flash flow:
+
+- hold `BOOTSEL`, plug in USB, and release when `RPI-RP2` appears
+- copy the downloaded `.uf2` file to `RPI-RP2`
+- wait for auto-reboot, then reconnect serial monitor
+
+If you use RP2040-Zero or RP2350-Zero:
+
+- start with the matching chip-family page above, then verify board-specific UF2 guidance from the board vendor docs.
+
+What this script does:
+
+- prints one startup line:
+  - `L00 MicroPython smoke test starting`
+- prints a heartbeat once per second:
+  - `tick 0`, `tick 1`, `tick 2`, ...
+- avoids LED use so the test stays board-neutral across Pico / Pico 2 / Zero variants.
+
+How to run it:
+
+- Option A (REPL):
+  - paste the script into a MicroPython REPL and press Enter.
+- Option B (file):
+  - upload it as `main.py` to a MicroPython board and reset the board.
 
 Expected result:
 
-- You understand what output to expect (`tick 0`, `tick 1`, ...).
+- Serial output shows the startup line once, then one `tick` line every second.
+- You can stop the script with `Ctrl+C` in REPL mode.
+
+If you do not see output:
+
+- confirm you opened the correct serial port.
+- press board reset once and watch the serial monitor again.
+- confirm the board is running MicroPython firmware (not Pico SDK firmware).
 
 ### Step 8: Install Pico SDK (Linux quick path)
 

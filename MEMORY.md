@@ -36,6 +36,10 @@ Codex should keep it updated when decisions are made.
     `lessons/L00-vscode-env/code/pico-sdk-usb-hello` and its `build/compile_commands.json`
   - Linux serial access troubleshooting uses persistent `dialout` group membership
     and relogin (avoid requiring `sudo` for routine `miniterm` use)
+  - MicroPython L00 smoke-test description must include run method, exact expected
+    startup/tick output pattern, and basic troubleshooting checks
+  - MicroPython setup docs include direct official UF2 download links for Pico and Pico 2
+    plus explicit BOOTSEL flash steps
 
 ## Hardware assumptions (update when confirmed)
 - Target boards:
@@ -78,3 +82,5 @@ Codex should keep it updated when decisions are made.
 - 2026-02-13: Updated `.gitignore` to ignore generated `pico-sdk-usb-hello` build directories (`build/` and `build-repro*/`) so local CMake output does not pollute git status.
 - 2026-02-13: Added `.vscode/settings.json` for L00 CMake project IntelliSense (`configurationProvider`, `compileCommands`, source/build directories), enabled `CMAKE_EXPORT_COMPILE_COMMANDS` in lesson CMake, and added include-error troubleshooting notes in L00 docs.
 - 2026-02-13: Added Linux serial `Permission denied` troubleshooting (dialout group + relogin + `fuser` check) to L00 overview/code README/assessment, and fixed Pico SDK smoke-test output to print real newlines.
+- 2026-02-13: Expanded L00 MicroPython smoke-test documentation in overview/code README/script docstring with explicit run options, expected startup + tick output, stop behavior, and troubleshooting.
+- 2026-02-13: Added direct official MicroPython UF2 download links (`download`, `RPI_PICO`, `RPI_PICO2`) and BOOTSEL flash steps to L00 overview/code README.
