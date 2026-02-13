@@ -66,3 +66,4 @@ Codex should keep it updated when decisions are made.
 - 2026-02-13: Updated Codex prompt templates and bootstrap guidance to prefer `.venv` for local `build_site.py` checks, with `python3` as fallback when `.venv` is not used.
 - 2026-02-13: Updated site generator and bootstrap template to strip duplicate lesson H1 from article HTML, normalize nested list indentation for two-space-authored Markdown, and convert list-indented fenced code blocks into nested code blocks for reliable rendering.
 - 2026-02-13: Expanded L00 `verify_env.py` coverage to check full tool map items (host tools, Python packages, `PICO_SDK_PATH`, VS Code CLI, and required extension IDs), and documented `.venv`-aware package-check behavior.
+- 2026-02-13: Added explicit Pico SDK install instructions in L00 overview/code README (Linux quick path with official macOS/Windows references) and switched sample build command to include `-GNinja`.

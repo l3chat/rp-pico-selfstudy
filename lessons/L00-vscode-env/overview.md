@@ -277,20 +277,64 @@ Expected result:
 
 - You understand what output to expect (`tick 0`, `tick 1`, ...).
 
-### Step 8: Review the Pico SDK smoke-test project
+### Step 8: Install Pico SDK (Linux quick path)
+
+If you are on Linux, run:
+
+```bash
+sudo apt update
+sudo apt install -y cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib ninja-build
+```
+
+Then clone the SDK and initialize submodules:
+
+```bash
+mkdir -p "$HOME/opt"
+cd "$HOME/opt"
+git clone https://github.com/raspberrypi/pico-sdk.git
+git -C pico-sdk submodule update --init
+```
+
+Set `PICO_SDK_PATH`:
+
+```bash
+echo 'export PICO_SDK_PATH="$HOME/opt/pico-sdk"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+Verify the path:
+
+```bash
+test -f "$PICO_SDK_PATH/external/pico_sdk_import.cmake" && echo "PICO_SDK_PATH OK"
+```
+
+Expected result:
+
+- You have a local SDK clone at `$HOME/opt/pico-sdk`.
+- `PICO_SDK_PATH` is set in your shell.
+- The `pico_sdk_import.cmake` check prints `PICO_SDK_PATH OK`.
+
+If you are on macOS or Windows:
+
+- follow the official SDK setup guides first:
+  - `https://www.raspberrypi.com/documentation/microcontrollers/c_sdk.html`
+  - `https://github.com/raspberrypi/pico-setup`
+- return to this lesson after `PICO_SDK_PATH` is configured.
+
+### Step 9: Review and build the Pico SDK smoke-test project
 
 Open:
 
 - `lessons/L00-vscode-env/code/pico-sdk-usb-hello/CMakeLists.txt`
 - `lessons/L00-vscode-env/code/pico-sdk-usb-hello/main.c`
 
-Build commands (after Pico SDK/toolchain install):
+Build commands:
 
 ```bash
 cd lessons/L00-vscode-env/code/pico-sdk-usb-hello
 mkdir -p build
 cd build
-cmake .. -DPICO_BOARD=<YOUR_BOARD_ID>
+cmake .. -GNinja -DPICO_BOARD=<YOUR_BOARD_ID>
 cmake --build .
 ```
 
