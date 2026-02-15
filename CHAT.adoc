@@ -618,3 +618,133 @@ Assistant::
 ----
 Committed and pushed the pending per-turn chat auto-append updates; asked what you want after "and".
 ----
+
+== Turn 34
+
+User::
++
+----
+what is the current status of the project?
+----
+
+Assistant::
++
+----
+Reported clean git status, roadmap progress, TODO state, lesson coverage, and open hardware verification items.
+----
+
+== Turn 35
+
+User::
++
+----
+do you have any suggestions about L00?
+----
+
+Assistant::
++
+----
+Provided focused L00 improvement suggestions: Windows command variants, stricter assessment command, expected-output snippets, board-ID helper table, and completion artifact.
+----
+
+== Turn 36
+
+User::
++
+----
+can you create a simplified block-scheme the mcu in table form and graphically as svg?
+----
+
+Assistant::
++
+----
+Created L00 notes and SVG block-scheme, linked from overview, then later reverted by user request.
+----
+
+== Turn 37
+
+User::
++
+----
+revert the whole project to the last commit.
+----
+
+Assistant::
++
+----
+Ran `git reset --hard HEAD` and `git clean -fd`, restoring the repo to commit `144be62`.
+----
+
+== Turn 38
+
+User::
++
+----
+Explane this:
+
+## Chat archive discipline
+- Auto-append every user/assistant turn (not only end-of-session summaries).
+- Write chat-archive updates without requiring commit/push unless explicitly requested.
+----
+
+Assistant::
++
+----
+Explained that chat turns should be appended immediately per exchange and stored locally without requiring commit/push unless requested.
+----
+
+== Turn 39
+
+User::
++
+----
+can we go to the next lesson?
+----
+
+Assistant::
++
+----
+Confirmed next lesson is L0A and offered to scaffold overview, assessment, and code examples.
+----
+
+== Turn 40
+
+User::
++
+----
+yes
+----
+
+Assistant::
++
+----
+Implemented L0A with full lesson content, assessment, and runnable code assets.
+----
+
+== Turn 41
+
+User::
++
+----
+yes
+----
+
+Assistant::
++
+----
+Verified L0A scaffold state after interruption and confirmed lesson/tracker changes are present.
+----
+
+== Turn 42
+
+User::
++
+----
+commit and push
+----
+
+Assistant::
++
+----
+Preparing commit for current L0A lesson/tracker updates and pushing to remote.
+----

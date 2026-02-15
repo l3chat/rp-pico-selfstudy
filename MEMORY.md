@@ -108,3 +108,4 @@ Codex should keep it updated when decisions are made.
 - 2026-02-13: Propagated chat-archive conventions into `bootstrap-03-scaffold.sh` so scaffolded repos now include `CHAT.adoc`, AGENTS/MEMORY chat rules, README mention, and clean-mode handling.
 - 2026-02-13: Updated site publishing to generate per-lesson `overview.html` and `assessment.html` (plus optional `notes.html`) and rewrite lesson-doc links from `.md` to `.html`; mirrored the same build script logic into bootstrap scaffolding.
 - 2026-02-13: Switched chat archiving to per-turn auto-append (no commit/push required) and synced the same rule into bootstrap AGENTS/MEMORY templates.
+- 2026-02-15: Completed L0A Python crash course lesson with beginner-first Python basics (variables/types, conditionals/loops, functions/returns), practical script exercises, and assessment rubric in `lessons/L0A-python-crash`.
